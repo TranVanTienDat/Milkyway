@@ -1,21 +1,22 @@
-# Rule: TypeScript & Typings
+# Quy tắc: TypeScript & Typings (Định kiểu)
 
-1. ВЕСЬ КОД ДОЛЖЕН БЫТЬ НА TYPESCRIPT. Не используй `.js` файлы для контроллеров, сервисов или роутов, если не указано иное.
-2. ИСПОЛЬЗУЙ ВСТРОЕННЫЕ ТИПЫ STRAPI: Импортируй типы из `@strapi/strapi`.
-3. ТИПИЗАЦИЯ ФАБРИК: При расширении core-контроллеров или сервисов используй фабрики `factories.createCoreController` и типизируй параметр `strapi`.
+1. TOÀN BỘ CODE PHẢI LÀ TYPESCRIPT. Không sử dụng các file `.js` cho controllers, services hoặc routes trừ khi có chỉ định khác.
+2. SỬ DỤNG CÁC TYPES TÍCH HỢP CỦA STRAPI: Import các types từ `@strapi/strapi`.
+3. ĐỊNH KIỂU CHO CÁC FACTORIES: Khi mở rộng core-controllers hoặc core-services, hãy sử dụng các factories `factories.createCoreController` và định kiểu cho tham số `strapi`.
 
-**Правильный синтаксис (Strapi 5):**
+**Cú pháp đúng (Strapi 5):**
 ```typescript
 import { factories } from '@strapi/strapi';
 import type { Core } from '@strapi/strapi';
 
 export default factories.createCoreController('api::restaurant.restaurant', ({ strapi }: { strapi: Core.Strapi }) => ({
-  // Переопределение метода
+  // Ghi đè phương thức (Override method)
   async find(ctx) {
-    // Вызов базового метода
+    // Gọi phương thức gốc (Base method)
     const { data, meta } = await super.find(ctx);
     
-    // Кастомная логика
+    // Logic tùy chỉnh (Custom logic)
     return { data, meta };
   }
 }));
+```

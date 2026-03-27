@@ -1,85 +1,85 @@
 ---
 name: context7
-description: Retrieve up-to-date documentation for software libraries, frameworks, and components via the Context7 API. This skill should be used when looking up documentation for any programming library or framework, finding code examples for specific APIs or features, verifying correct usage of library functions, or obtaining current information about library APIs that may have changed since training.
+description: Truy xuất tài liệu cập nhật cho các thư viện phần mềm, frameworks và components thông qua Context7 API. Sử dụng skill này khi cần tìm kiếm tài liệu cho bất kỳ thư viện hoặc framework lập trình nào, tìm ví dụ mã nguồn cho các API hoặc tính năng cụ thể, xác minh cách sử dụng đúng của các hàm trong thư viện, hoặc lấy thông tin hiện tại về các thư viện API có thể đã thay đổi kể từ khi quá trình huấn luyện kết thúc.
 ---
 
 # Context7
 
-## Overview
+## Tổng quan (Overview)
 
-This skill enables retrieval of current documentation for software libraries and components by querying the Context7 API via curl. Use it instead of relying on potentially outdated training data.
+Skill này cho phép truy xuất tài liệu hiện tại cho các thư viện và thành phần phần mềm bằng cách truy vấn Context7 API thông qua curl. Hãy sử dụng nó thay vì dựa vào dữ liệu huấn luyện có thể đã lỗi thời.
 
-## Workflow
+## Quy trình làm việc (Workflow)
 
-### Step 1: Search for the Library
+### Bước 1: Tìm kiếm thư viện (Search for the Library)
 
-To find the Context7 library ID, query the search endpoint:
+Để tìm ID thư viện trên Context7, hãy truy vấn endpoint tìm kiếm:
 
 ```bash
 curl -s "https://context7.com/api/v2/libs/search?libraryName=LIBRARY_NAME&query=TOPIC" | jq '.results[0]'
 ```
 
-**Parameters:**
-- `libraryName` (required): The library name to search for (e.g., "react", "nextjs", "fastapi", "axios")
-- `query` (required): A description of the topic for relevance ranking
+**Tham số (Parameters):**
+- `libraryName` (bắt buộc): Tên thư viện cần tìm (ví dụ: "react", "nextjs", "fastapi", "axios")
+- `query` (bắt buộc): Mô tả về chủ đề để xếp hạng mức độ liên quan
 
-**Response fields:**
-- `id`: Library identifier for the context endpoint (e.g., `/websites/react_dev_reference`)
-- `title`: Human-readable library name
-- `description`: Brief description of the library
-- `totalSnippets`: Number of documentation snippets available
+**Các trường phản hồi (Response fields):**
+- `id`: Định danh thư viện cho endpoint context (ví dụ: `/websites/react_dev_reference`)
+- `title`: Tên thư viện dễ đọc
+- `description`: Mô tả ngắn gọn về thư viện
+- `totalSnippets`: Số lượng đoạn tài liệu (documentation snippets) có sẵn
 
-### Step 2: Fetch Documentation
+### Bước 2: Lấy tài liệu (Fetch Documentation)
 
-To retrieve documentation, use the library ID from step 1:
+Để truy xuất tài liệu, hãy sử dụng ID thư viện từ bước 1:
 
 ```bash
 curl -s "https://context7.com/api/v2/context?libraryId=LIBRARY_ID&query=TOPIC&type=txt"
 ```
 
-**Parameters:**
-- `libraryId` (required): The library ID from search results
-- `query` (required): The specific topic to retrieve documentation for
-- `type` (optional): Response format - `json` (default) or `txt` (plain text, more readable)
+**Tham số (Parameters):**
+- `libraryId` (bắt buộc): ID thư viện từ kết quả tìm kiếm
+- `query` (bắt buộc): Chủ đề cụ thể cần lấy tài liệu
+- `type` (tùy chọn): Định dạng phản hồi - `json` (mặc định) hoặc `txt` (văn bản thuần túy, dễ đọc hơn)
 
-## Examples
+## Ví dụ (Examples)
 
-### React hooks documentation
+### Tài liệu về React hooks
 
 ```bash
-# Find React library ID
+# Tìm ID thư viện React
 curl -s "https://context7.com/api/v2/libs/search?libraryName=react&query=hooks" | jq '.results[0].id'
-# Returns: "/websites/react_dev_reference"
+# Trả về: "/websites/react_dev_reference"
 
-# Fetch useState documentation
+# Lấy tài liệu về useState
 curl -s "https://context7.com/api/v2/context?libraryId=/websites/react_dev_reference&query=useState&type=txt"
 ```
 
-### Next.js routing documentation
+### Tài liệu về Next.js routing
 
 ```bash
-# Find Next.js library ID
+# Tìm ID thư viện Next.js
 curl -s "https://context7.com/api/v2/libs/search?libraryName=nextjs&query=routing" | jq '.results[0].id'
 
-# Fetch app router documentation
+# Lấy tài liệu về app router
 curl -s "https://context7.com/api/v2/context?libraryId=/vercel/next.js&query=app+router&type=txt"
 ```
 
 ### FastAPI dependency injection
 
 ```bash
-# Find FastAPI library ID
+# Tìm ID thư viện FastAPI
 curl -s "https://context7.com/api/v2/libs/search?libraryName=fastapi&query=dependencies" | jq '.results[0].id'
 
-# Fetch dependency injection documentation
+# Lấy tài liệu về dependency injection
 curl -s "https://context7.com/api/v2/context?libraryId=/fastapi/fastapi&query=dependency+injection&type=txt"
 ```
 
-## Tips
+## Mẹo (Tips)
 
-- Use `type=txt` for more readable output
-- Use `jq` to filter and format JSON responses
-- Be specific with the `query` parameter to improve relevance ranking
-- If the first search result is not correct, check additional results in the array
-- URL-encode query parameters containing spaces (use `+` or `%20`)
-- No API key is required for basic usage (rate-limited)
+- Sử dụng `type=txt` để có kết quả dễ đọc hơn.
+- Sử dụng `jq` để lọc và định dạng các phản hồi JSON.
+- Hãy cụ thể với tham số `query` để cải thiện xếp hạng mức độ liên quan.
+- Nếu kết quả tìm kiếm đầu tiên không chính xác, hãy kiểm tra các kết quả bổ sung trong mảng.
+- URL-encode các tham số truy vấn chứa dấu cách (sử dụng `+` hoặc `%20`).
+- Không cần API key cho việc sử dụng cơ bản (có giới hạn tần suất - rate-limited).

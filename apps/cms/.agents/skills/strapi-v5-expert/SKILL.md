@@ -1,210 +1,210 @@
 ---
 name: strapi-v5-expert
-description: Главный индекс базы знаний Strapi v5. Используй этот файл для поиска точных URL-адресов документации перед написанием архитектуры, конфигураций или кода бэкенда.
+description: Chỉ mục chính của kho kiến thức Strapi v5. Sử dụng file này để tìm các URL tài liệu chính xác trước khi thiết kế kiến trúc, cấu hình hoặc viết code bẻckend.
 ---
 
-# Указания для Агента
+# Hướng dẫn cho Agent
 
-Когда пользователь ставит задачу, найди наиболее подходящую категорию в разделе "Quick Reference" ниже.
-Скопируй нужный URL и **ИСПОЛЬЗУЙ ИНСТРУМЕНТ WEB BROWSING**, чтобы прочитать актуальную документацию Strapi v5 по этой ссылке. Только после прочтения приступай к генерации кода.
+Khi người dùng đặt ra một nhiệm vụ, hãy tìm danh mục phù hợp nhất trong phần "Quick Reference" bên dưới.
+Sao chép URL cần thiết và **SỬ DỤNG CÔNG CỤ WEB BROWSING** để đọc tài liệu Strapi v5 mới nhất theo liên kết đó. Chỉ sau khi đọc xong mới bắt đầu tạo mã nguồn.
 
 ---
 
-## Quick Reference (Индекс Документации)
+## Quick Reference (Chỉ mục Tài liệu)
 
-### 1. Document Service API (Главный инструмент работы с БД)
-Используй эти ссылки для любых задач, связанных с CRUD операциями бэкенда. Устаревший `entityService` заменен на `strapi.documents()`.
+### 1. Document Service API (Công cụ chính để làm việc với DB)
+Sử dụng các liên kết này cho bất kỳ nhiệm vụ nào liên quan đến các thao tác CRUD ở bẻckend. `entityService` cũ đã được thay thế bằng `strapi.documents()`.
 * **Core API & CRUD:** https://docs.strapi.io/dev-docs/api/document-service
-  *Описание:* Базовые методы (`findOne`, `findMany`, `create`, `update`, `delete`, `count`). Работа с `documentId`.
+  *Mô tả:* Các phương thức cơ bản (`findOne`, `findMany`, `create`, `update`, `delete`, `count`). Làm việc với `documentId`.
 * **Documents Concept:** https://docs.strapi.io/dev-docs/api/document-service#documents
-  *Описание:* Что такое Document в Strapi 5 (объединение локалей и статусов публикации в один объект).
-* **Populate (Связи и Медиа):** https://docs.strapi.io/dev-docs/api/document-service/populate
-  *Описание:* Как запрашивать вложенные связи и медиафайлы.
+  *Mô tả:* Khái niệm Document trong Strapi 5 (kết hợp các locales và trạng thái xuất bản vào một đối tượng duy nhất).
+* **Populate (Liên kết và Media):** https://docs.strapi.io/dev-docs/api/document-service/populate
+  *Mô tả:* Cách truy vấn các liên kết lồng nhau và các file media.
 * **Fields Selection:** https://docs.strapi.io/dev-docs/api/document-service/fields
-  *Описание:* Выборка конкретных колонок из БД (параметр `fields`).
-* **Filters (Фильтрация):** https://docs.strapi.io/dev-docs/api/document-service/filters
-  *Описание:* Операторы фильтрации (`$eq`, `$in`, `$not`, `$and` и др.).
+  *Mô tả:* Chọn các cột cụ thể từ DB (tham số `fields`).
+* **Filters (Lọc):** https://docs.strapi.io/dev-docs/api/document-service/filters
+  *Mô tả:* Các toán tử lọc (`$eq`, `$in`, `$not`, `$and` và các toán tử khác).
 * **Sort & Pagination:** https://docs.strapi.io/dev-docs/api/document-service/sort-pagination
-  *Описание:* Сортировка по полям и пагинация (limit, start).
+  *Mô tả:* Sắp xếp theo trường và phân trang (limit, start).
 * **Locale (i18n):** https://docs.strapi.io/dev-docs/api/document-service/locale
-  *Описание:* Манипуляции с документами для конкретной локали (языка).
+  *Mô tả:* Thao tác với các tài liệu cho một locale (ngôn ngữ) cụ thể.
 * **Draft & Publish:** https://docs.strapi.io/dev-docs/api/document-service/draft-and-publish
-  *Описание:* Работа со статусами (published, draft), методы `publish()` и `unpublish()`.
+  *Mô tả:* Làm việc với các trạng thái (published, draft), các phương thức `publish()` và `unpublish()`.
 * **Document Service Middlewares:** https://docs.strapi.io/dev-docs/api/document-service/middlewares
-  *Описание:* Перехват и модификация запросов `strapi.documents.use()` до обращения к БД.
+  *Mô tả:* Đánh chặn và sửa đổi các yêu cầu `strapi.documents.use()` trước khi truy cập vào DB.
 
-### 2. Архитектура и Кастомизация Бэкенда
+### 2. Kiến trúc và Tùy chỉnh Backend
 * **Overview & Structure:** https://docs.strapi.io/dev-docs/backend-customization
-  *Описание:* Интерактивная диаграмма запросов бэкенда.
+  *Mô tả:* Sơ đồ tương tác của các yêu cầu bẻckend.
 * **Project Structure:** https://docs.strapi.io/dev-docs/project-structure
-  *Описание:* Структура папок Strapi-проекта (src/api, config и т.д.).
+  *Mô tả:* Cấu trúc thư mục của dự án Strapi (src/api, config, v.v.).
 * **Routes:** https://docs.strapi.io/dev-docs/backend-customization/routes
-  *Описание:* Настройка кастомных HTTP-маршрутов и core-роутов.
+  *Mô tả:* Cấu hình các HTTP routes tùy chỉnh và core routes.
 * **Controllers:** https://docs.strapi.io/dev-docs/backend-customization/controllers
-  *Описание:* Создание кастомных контроллеров и расширение (`createCoreController`).
+  *Mô tả:* Tạo các controllers tùy chỉnh và mở rộng (`createCoreController`).
 * **Services:** https://docs.strapi.io/dev-docs/backend-customization/services
-  *Описание:* Инкапсуляция бизнес-логики (`createCoreService`).
+  *Mô tả:* Đóng gói logic kinh doanh (`createCoreService`).
 * **Middlewares (HTTP):** https://docs.strapi.io/dev-docs/backend-customization/middlewares
-  *Описание:* Глобальные и route-мидлвары Koa (`ctx`, `next`).
+  *Mô tả:* Các middlewares toàn cục và route của Koa (`ctx`, `next`).
 * **Policies:** https://docs.strapi.io/dev-docs/backend-customization/policies
-  *Описание:* Защита эндпоинтов и проверка прав доступа до контроллера.
+  *Mô tả:* Bảo vệ các endpoints và kiểm tra quyền truy cập trước khi vào controller.
 * **Requests & Responses:** https://docs.strapi.io/dev-docs/backend-customization/requests-responses
-  *Описание:* Структура объекта `ctx` (`ctx.request`, `ctx.state.user`, `ctx.response`).
+  *Mô tả:* Cấu trúc đối tượng `ctx` (`ctx.request`, `ctx.state.user`, `ctx.response`).
 * **Error Handling:** https://docs.strapi.io/dev-docs/error-handling
-  *Описание:* Выброс стандартизированных ошибок (`ApplicationError`, `ValidationError`).
+  *Mô tả:* Ném các lỗi tiêu chuẩn hóa (`ApplicationError`, `ValidationError`).
 * **Lifecycle Functions (Global):** https://docs.strapi.io/dev-docs/configurations/functions
-  *Описание:* Использование `register`, `bootstrap` и `destroy` в файле `src/index.ts`.
+  *Mô tả:* Sử dụng `register`, `bootstrap` và `destroy` trong file `src/index.ts`.
 
-### 3. Модели и База Данных
+### 3. Models và Cơ sở dữ liệu
 * **Models & Content-Types:** https://docs.strapi.io/dev-docs/backend-customization/models
-  *Описание:* Создание схем данных (`schema.json`), типы атрибутов.
+  *Mô tả:* Tạo sơ đồ dữ liệu (`schema.json`), các kiểu thuộc tính.
 * **Lifecycle Hooks:** https://docs.strapi.io/dev-docs/backend-customization/models#lifecycle-hooks
-  *Описание:* Триггеры БД (`beforeCreate`, `afterUpdate`).
+  *Mô tả:* Các triggers của DB (`beforeCreate`, `afterUpdate`).
 * **Relations:** https://docs.strapi.io/dev-docs/api/rest/relations
-  *Описание:* Управление связями (connect, disconnect, set) через API.
+  *Mô tả:* Quản lý các liên kết (connect, disconnect, set) thông qua API.
 * **Database Transactions:** https://docs.strapi.io/dev-docs/database/transactions
-  *Описание:* Использование `strapi.db.transaction()` для атомарных операций.
+  *Mô tả:* Sử dụng `strapi.db.transaction()` cho các hoạt động nguyên tử.
 * **Database Migrations:** https://docs.strapi.io/dev-docs/database/migrations
-  *Описание:* Скрипты миграции структуры или данных (папка `database/migrations`).
+  *Mô tả:* Các scripts di chuyển cấu trúc hoặc dữ liệu (thư mục `database/migrations`).
 * **Database Configuration:** https://docs.strapi.io/dev-docs/configurations/database
-  *Описание:* Настройка `config/database.ts` (SQLite, PostgreSQL, MySQL).
+  *Mô tả:* Cấu hình `config/database.ts` (SQLite, PostgreSQL, MySQL).
 
-### 4. Внешние API (REST, GraphQL, Client)
+### 4. API bên ngoài (REST, GraphQL, Client)
 * **Content API Overview:** https://docs.strapi.io/dev-docs/api/content-api
-  *Описание:* Обзор внешних API Strapi.
+  *Mô tả:* Tổng quan về các API bên ngoài của Strapi.
 * **REST API Reference:** https://docs.strapi.io/dev-docs/api/rest
-  *Описание:* Основной справочник эндпоинтов. Плоский формат ответа v5.
+  *Mô tả:* Danh mục chính của các endpoints. Cấu trúc phản hồi phẳng của v5.
 * **REST API Parameters:** https://docs.strapi.io/dev-docs/api/rest/parameters
-  *Описание:* Полный список параметров REST API.
+  *Mô tả:* Danh sách đầy đủ các tham số REST API.
 * **REST API Guides:** https://docs.strapi.io/dev-docs/api/rest/guides
-  *Описание:* Специфичные кейсы использования REST API.
+  *Mô tả:* Các tình huống sử dụng REST API cụ thể.
 * **REST API Populate & Select:** https://docs.strapi.io/dev-docs/api/rest/populate-select
-  *Описание:* Параметры `populate` и `fields` в REST запросах.
+  *Mô tả:* Các tham số `populate` và `fields` trong các yêu cầu REST.
 * **REST API Sort & Pagination:** https://docs.strapi.io/dev-docs/api/rest/sort-pagination
-  *Описание:* Сортировка и пагинация по offset и page.
+  *Mô tả:* Sắp xếp và phân trang theo offset và page.
 * **REST API Status:** https://docs.strapi.io/dev-docs/api/rest/status
-  *Описание:* Фильтрация REST ответов по статусу (published/draft).
+  *Mô tả:* Lọc các phản hồi REST theo trạng thái (published/draft).
 * **REST API Locale:** https://docs.strapi.io/dev-docs/api/rest/locale
-  *Описание:* Запросы REST API с параметром `locale`.
+  *Mô tả:* Các yêu cầu REST API với tham số `locale`.
 * **REST API Upload:** https://docs.strapi.io/dev-docs/api/rest/upload
-  *Описание:* Загрузка файлов через POST `/api/upload`.
+  *Mô tả:* Tải lên các file thông qua POST `/api/upload`.
 * **Interactive Query Builder:** https://docs.strapi.io/dev-docs/api/rest/interactive-query-builder
-  *Описание:* Использование библиотеки `qs` для построения сложных URL.
+  *Mô tả:* Sử dụng thư viện `qs` để xây dựng các URL phức tạp.
 * **GraphQL API:** https://docs.strapi.io/dev-docs/api/graphql
-  *Описание:* Использование GraphQL мутаций и запросов, фильтрация.
+  *Mô tả:* Sử dụng các mutations và queries của GraphQL, bộ lọc.
 * **GraphQL Plugin Config:** https://docs.strapi.io/dev-docs/plugins/graphql
-  *Описание:* Настройка Apollo Server, Shadow CRUD и лимитов сложности в `config/plugins.ts`.
+  *Mô tả:* Cấu hình Apollo Server, Shadow CRUD và giới hạn độ phức tạp trong `config/plugins.ts`.
 * **Strapi Client:** https://docs.strapi.io/dev-docs/strapi-client
-  *Описание:* Официальная библиотека `@strapi/client` для фронтенда.
+  *Mô tả:* Thư viện chính thức `@strapi/client` cho frontend.
 * **OpenAPI & Swagger:** https://docs.strapi.io/dev-docs/api/openapi
-  *Описание:* Генерация OpenAPI спецификации, плагин Documentation.
+  *Mô tả:* Tạo đặc tả OpenAPI, plugin Documentation.
 
 ### 5. TypeScript
 * **TypeScript Setup & Overview:** https://docs.strapi.io/dev-docs/typescript
-  *Описание:* Использование TypeScript в Strapi.
+  *Mô tả:* Sử dụng TypeScript trong Strapi.
 * **TypeScript Development:** https://docs.strapi.io/dev-docs/typescript/development
-  *Описание:* Автокомплит, типизация `strapi` instance.
+  *Mô tả:* Auto-complete, định kiểu cho instance `strapi`.
 * **Manipulating Documents:** https://docs.strapi.io/dev-docs/typescript/manipulating-documents
-  *Описание:* Использование `UID.ContentType` и `Data.Document` для строгой типизации.
+  *Mô tả:* Sử dụng `UID.ContentType` và `Data.Document` để định kiểu nghiêm ngặt.
 * **TypeScript Configuration:** https://docs.strapi.io/dev-docs/typescript/configuration
-  *Описание:* Настройки `config/typescript.ts` и автогенерация типов.
+  *Mô tả:* Các cài đặt trong `config/typescript.ts` và tự động tạo types.
 * **Adding TypeScript:** https://docs.strapi.io/dev-docs/typescript/migration
-  *Описание:* Как добавить TS в существующий JS проект.
+  *Mô tả:* Cách thêm TS vào một dự án JS hiện có.
 
-### 6. Конфигурации и Автоматизация (Settings)
+### 6. Cấu hình và Tự động hóa (Settings)
 * **Configurations Overview:** https://docs.strapi.io/dev-docs/configurations
-  *Описание:* Обзор папки `/config`.
+  *Mô tả:* Tổng quan về thư mục `/config`.
 * **Server Config:** https://docs.strapi.io/dev-docs/configurations/server
-  *Описание:* `config/server.ts` (host, port, url, proxy).
+  *Mô tả:* `config/server.ts` (host, port, url, proxy).
 * **API Config:** https://docs.strapi.io/dev-docs/configurations/api
-  *Описание:* `config/api.ts` (префиксы, лимиты пагинации).
+  *Mô tả:* `config/api.ts` (prefixes, giới hạn phân trang).
 * **Middlewares Config:** https://docs.strapi.io/dev-docs/configurations/middlewares
-  *Описание:* Настройка встроенных мидлваров (CORS, security, body) в `config/middlewares.ts`.
+  *Mô tả:* Cấu hình các middlewares tích hợp (CORS, security, body) trong `config/middlewares.ts`.
 * **Plugins Config:** https://docs.strapi.io/dev-docs/configurations/plugins
-  *Описание:* Подключение и настройка плагинов локально (`config/plugins.ts`).
+  *Mô tả:* Kết nối và cấu hình các plugins cục bộ (`config/plugins.ts`).
 * **Environment Variables:** https://docs.strapi.io/dev-docs/configurations/environment
-  *Описание:* Работа с `.env` и хелпером `env()`.
+  *Mô tả:* Làm việc với `.env` và helper `env()`.
 * **CRON Jobs:** https://docs.strapi.io/dev-docs/configurations/cron
-  *Описание:* Выполнение фоновых задач по расписанию (node-schedule).
+  *Mô tả:* Thực hiện các tác vụ nền theo lịch trình (node-schedule).
 * **Webhooks:** https://docs.strapi.io/dev-docs/configurations/webhooks
-  *Описание:* Настройка триггеров HTTP-запросов во внешние системы.
+  *Mô tả:* Cấu hình các triggers cho yêu cầu HTTP đến các hệ thống bên ngoài.
 * **Features (Feature Flags):** https://docs.strapi.io/dev-docs/configurations/features
-  *Описание:* Включение экспериментальных функций.
+  *Mô tả:* Bật các chức năng thử nghiệm.
 
-### 7. Плагины и Расширения
+### 7. Plugins và Mở rộng
 * **Installing Plugins:** https://docs.strapi.io/user-docs/plugins
-  *Описание:* Использование Marketplace и CLI для установки плагинов.
+  *Mô tả:* Sử dụng Marketplace và CLI để cài đặt plugins.
 * **Users & Permissions:** https://docs.strapi.io/dev-docs/plugins/users-permissions
-  *Описание:* Управление пользователями, JWT, ACL, регистрация и роли.
+  *Mô tả:* Quản lý người dùng, JWT, ACL, đăng ký và vai trò.
 * **Upload files / Media Library:** https://docs.strapi.io/dev-docs/plugins/upload
-  *Описание:* Настройка провайдеров загрузки файлов (AWS S3, Local).
+  *Mô tả:* Cấu hình các nhà cung cấp tải lên file (AWS S3, Local).
 * **Email Plugin:** https://docs.strapi.io/dev-docs/plugins/email
-  *Описание:* Отправка транзакционных писем, настройка провайдеров SMTP.
+  *Mô tả:* Gửi email giao dịch, cấu hình các nhà cung cấp SMTP.
 * **Custom Fields:** https://docs.strapi.io/dev-docs/custom-fields
-  *Описание:* Создание и регистрация кастомных типов полей.
+  *Mô tả:* Tạo và đăng ký các kiểu trường tùy chỉnh.
 * **Sentry Plugin:** https://docs.strapi.io/dev-docs/plugins/sentry
-  *Описание:* Интеграция с Sentry для отслеживания ошибок.
+  *Mô tả:* Tích hợp với Sentry để theo dõi lỗi.
 
-### 8. Миграция v4 -> v5
+### 8. Di chuyển v4 -> v5
 * **Upgrading Introduction:** https://docs.strapi.io/dev-docs/migration/v4-to-v5
-  *Описание:* Обзор процесса обновления на Strapi 5.
+  *Mô tả:* Tổng quan về quá trình cập nhật lên Strapi 5.
 * **Step-by-step Guide:** https://docs.strapi.io/dev-docs/migration/v4-to-v5/step-by-step
-  *Описание:* Пошаговая инструкция по апгрейду.
+  *Mô tả:* Hướng dẫn nâng cấp từng bước.
 * **Upgrade Tool:** https://docs.strapi.io/dev-docs/migration/v4-to-v5/upgrade-tool
-  *Описание:* Использование CLI-утилиты (codemods) для автоматической миграции.
+  *Mô tả:* Sử dụng công cụ CLI (codemods) để di chuyển tự động.
 * **Breaking Changes:** https://docs.strapi.io/dev-docs/migration/v4-to-v5/breaking-changes
-  *Описание:* Полный список ломающих изменений.
+  *Mô tả:* Danh sách đầy đủ các thay đổi gây phá vỡ (breaking changes).
 * **Entity Service to Document Service:** https://docs.strapi.io/dev-docs/migration/v4-to-v5/entity-service
-  *Описание:* Рефакторинг старых запросов на новый API и `documentId`.
+  *Mô tả:* Refactoring các yêu cầu cũ sang API mới và `documentId`.
 * **Plugins Migration:** https://docs.strapi.io/dev-docs/migration/v4-to-v5/plugins
-  *Описание:* Обновление плагинов и использование Plugin SDK.
+  *Mô tả:* Cập nhật các plugins và sử dụng Plugin SDK.
 * **Helper-plugin Migration:** https://docs.strapi.io/dev-docs/migration/v4-to-v5/helper-plugin
-  *Описание:* Замена удаленного `@strapi/helper-plugin`.
+  *Mô tả:* Thay thế `@strapi/helper-plugin` đã bị xóa.
 * **Design System Updates:** https://docs.strapi.io/dev-docs/migration/v4-to-v5/design-system
-  *Описание:* Изменения в UI компонентах (Design System v2).
+  *Mô tả:* Các thay đổi trong UI components (Design System v2).
 
-### 9. Инфраструктура и CLI
+### 9. Hạ tầng và CLI
 * **Installation & Quick Start:** https://docs.strapi.io/dev-docs/installation
-  *Описание:* Установка Strapi (CLI, Docker).
+  *Mô tả:* Cài đặt Strapi (CLI, Docker).
 * **Command Line Interface (CLI):** https://docs.strapi.io/dev-docs/cli
-  *Описание:* Команды `strapi generate`, `build`, `ts:generate-types`.
+  *Mô tả:* Các lệnh `strapi generate`, `build`, `ts:generate-types`.
 * **Templates:** https://docs.strapi.io/dev-docs/templates
-  *Описание:* Создание проектов на основе готовых шаблонов GitHub.
+  *Mô tả:* Tạo các dự án dựa trên các mẫu có sẵn của GitHub.
 * **Deployment:** https://docs.strapi.io/dev-docs/deployment
-  *Описание:* Требования к серверу, переменные для продакшена.
+  *Mô tả:* Các yêu cầu đối với máy chủ, các biến cho môi trường production.
 * **Data Management:** https://docs.strapi.io/dev-docs/data-management
-  *Описание:* Импорт/Экспорт/Трансфер данных между базами (CLI).
+  *Mô tả:* Import/Export/Transfer dữ liệu giữa các cơ sở dữ liệu (CLI).
 * **Testing:** https://docs.strapi.io/dev-docs/testing
-  *Описание:* Настройка Jest и Supertest для unit и интеграционных тестов.
+  *Mô tả:* Cấu hình Jest và Supertest cho các bài kiểm tra unit và kiểm tra tích hợp.
 
-### 10. CMS Features и Админ-Панель
+### 10. CMS Features và Admin Panel
 * **Admin Panel Settings:** https://docs.strapi.io/user-docs/intro
-  *Описание:* Обзор графического интерфейса администратора.
+  *Mô tả:* Tổng quan về giao diện đồ họa quản trị.
 * **Admin Panel Configuration:** https://docs.strapi.io/dev-docs/configurations/admin-panel
-  *Описание:* Настройка `config/admin.ts` (секреты, переводы).
+  *Mô tả:* Cấu hình `config/admin.ts` (secrets, bản dịch).
 * **Homepage Customization:** https://docs.strapi.io/dev-docs/admin-panel-customization/homepage
-  *Описание:* Добавление виджетов на главную страницу админки.
+  *Mô tả:* Thêm các widgets vào trang chủ của trang quản trị.
 * **Content-Type Builder:** https://docs.strapi.io/user-docs/content-type-builder
-  *Описание:* Использование GUI для создания моделей данных.
+  *Mô tả:* Sử dụng GUI để tạo các mô hình dữ liệu.
 * **Content Manager:** https://docs.strapi.io/user-docs/content-manager
-  *Описание:* Интерфейс редактирования записей.
+  *Mô tả:* Giao diện chỉnh sửa các bản ghi.
 * **Draft & Publish (CMS):** https://docs.strapi.io/user-docs/draft-and-publish
-  *Описание:* Механика статусов контента.
+  *Mô tả:* Cơ chế của các trạng thái nội dung.
 * **Internationalization (CMS):** https://docs.strapi.io/dev-docs/plugins/i18n
-  *Описание:* Перевод контента на разные языки в админке.
+  *Mô tả:* Dịch nội dung sang các ngôn ngữ khác nhau trong trang quản trị.
 * **Preview:** https://docs.strapi.io/dev-docs/plugins/preview
-  *Описание:* Настройка Live Preview (предпросмотр контента на фронтенде).
+  *Mô tả:* Cấu hình Live Preview (xem trước nội dung trên frontend).
 * **API Tokens:** https://docs.strapi.io/user-docs/api-tokens
-  *Описание:* Токены для Server-to-Server интеграций.
+  *Mô tả:* Các tokens cho tích hợp Server-to-Server.
 * **Role-Based Access Control (RBAC):** https://docs.strapi.io/user-docs/users-roles-permissions
-  *Описание:* Настройка прав администраторов панели.
+  *Mô tả:* Cài đặt quyền cho các quản trị viên panel.
 * **Single Sign-On (SSO):** https://docs.strapi.io/dev-docs/configurations/sso
-  *Описание:* Авторизация админов через Azure, Google (Enterprise).
+  *Mô tả:* Xác thực quản trị viên thông qua Azure, Google (Enterprise).
 * **Audit Logs:** https://docs.strapi.io/user-docs/audit-logs
-  *Описание:* Журналирование действий администраторов (Enterprise).
+  *Mô tả:* Nhật ký ghi lại các hành động của quản trị viên (Enterprise).
 * **Review Workflows:** https://docs.strapi.io/user-docs/review-workflows
-  *Описание:* Настройка стадий ревью контента (Enterprise).
+  *Mô tả:* Cấu hình các giai đoạn review nội dung (Enterprise).
 * **Content History:** https://docs.strapi.io/user-docs/content-history
-  *Описание:* Версионирование и откат изменений контента (Enterprise).
+  *Mô tả:* Quản lý phiên bản và hoàn tác các thay đổi nội dung (Enterprise).
 * **Releases:** https://docs.strapi.io/user-docs/releases
-  *Описание:* Пакетная публикация контента (Growth/Enterprise).
+  *Mô tả:* Xuất bản nội dung hàng loạt (Growth/Enterprise).

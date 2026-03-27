@@ -1,107 +1,107 @@
-# UX Writing
+# Viết cho Trải nghiệm Người dùng (UX Writing)
 
-## The Button Label Problem
+## Vấn đề về Nhãn của Nút (The Button Label Problem)
 
-**Never use "OK", "Submit", or "Yes/No".** These are lazy and ambiguous. Use specific verb + object patterns:
+**Tuyệt đối không sử dụng "OK", "Gửi (Submit)", hoặc "Có/Không".** Những từ này rất lười biếng và mơ hồ. Hãy sử dụng mẫu câu cụ thể theo cấu trúc Động từ + Đối tượng:
 
-| Bad | Good | Why |
+| Tồi | Tốt | Tại sao |
 |-----|------|-----|
-| OK | Save changes | Says what will happen |
-| Submit | Create account | Outcome-focused |
-| Yes | Delete message | Confirms the action |
-| Cancel | Keep editing | Clarifies what "cancel" means |
-| Click here | Download PDF | Describes the destination |
+| OK | Lưu thay đổi | Nói rõ điều gì sẽ xảy ra |
+| Gửi | Tạo tài khoản | Tập trung vào kết quả |
+| Có | Xóa tin nhắn | Xác nhận hành động |
+| Hủy | Tiếp tục chỉnh sửa | Làm rõ nghĩa của việc "hủy" |
+| Bấm vào đây | Tải xuống tài liệu PDF | Mô tả đích đến |
 
-**For destructive actions**, name the destruction:
-- "Delete" not "Remove" (delete is permanent, remove implies recoverable)
-- "Delete 5 items" not "Delete selected" (show the count)
+**Đối với các hành động phá hủy**, hãy gọi tên sự phá hủy đó:
+- Sử dụng "Xóa (Delete)" thay vì "Gỡ bỏ (Remove)" (xóa là vĩnh viễn, gỡ bỏ ngụ ý có thể khôi phục).
+- "Xóa 5 mục" thay vì "Xóa các mục đã chọn" (hãy hiển thị số lượng cụ thể).
 
-## Error Messages: The Formula
+## Thông báo Lỗi: Công thức
 
-Every error message should answer: (1) What happened? (2) Why? (3) How to fix it? Example: "Email address isn't valid. Please include an @ symbol." not "Invalid input".
+Mọi thông báo lỗi nên trả lời được: (1) Chuyện gì đã xảy ra? (2) Tại sao? (3) Làm thế nào để khắc phục? Ví dụ: "Địa chỉ email không hợp lệ. Vui lòng bao gồm ký hiệu @." chứ không phải "Dữ liệu nhập không hợp lệ".
 
-### Error Message Templates
+### Các mẫu Thông báo Lỗi
 
-| Situation | Template |
+| Tình huống | Mẫu câu |
 |-----------|----------|
-| **Format error** | "[Field] needs to be [format]. Example: [example]" |
-| **Missing required** | "Please enter [what's missing]" |
-| **Permission denied** | "You don't have access to [thing]. [What to do instead]" |
-| **Network error** | "We couldn't reach [thing]. Check your connection and [action]." |
-| **Server error** | "Something went wrong on our end. We're looking into it. [Alternative action]" |
+| **Lỗi định dạng** | "[Trường này] cần có định dạng [định dạng]. Ví dụ: [ví dụ]" |
+| **Thiếu thông tin bắt buộc** | "Vui lòng nhập [thông tin còn thiếu]" |
+| **Bị từ chối quyền truy cập** | "Bạn không có quyền truy cập vào [thứ này]. [Việc cần làm thay thế]" |
+| **Lỗi mạng** | "Chúng tôi không thể kết nối tới [thứ này]. Hãy kiểm tra kết nối và [hành động]." |
+| **Lỗi máy chủ** | "Đã có lỗi xảy ra từ phía chúng tôi. Chúng tôi đang kiểm tra. [Hành động thay thế]" |
 
-### Don't Blame the User
+### Đừng đổ lỗi cho Người dùng
 
-Reframe errors: "Please enter a date in MM/DD/YYYY format" not "You entered an invalid date".
+Hãy thay đổi cách diễn đạt các lỗi: "Vui lòng nhập ngày theo định dạng MM/DD/YYYY" thay vì "Bạn đã nhập ngày không hợp lệ".
 
-## Empty States Are Opportunities
+## Trạng thái Trống (Empty States) là Cơ hội
 
-Empty states are onboarding moments: (1) Acknowledge briefly, (2) Explain the value of filling it, (3) Provide a clear action. "No projects yet. Create your first one to get started." not just "No items".
+Trạng thái trống là những khoảnh khắc để hướng dẫn (onboarding): (1) Thừa nhận ngắn gọn, (2) Giải thích giá trị của việc điền đầy nó, (3) Cung cấp một hành động rõ ràng. "Chưa có dự án nào. Hãy tạo dự án đầu tiên của bạn để bắt đầu." chứ không chỉ nói "Không có mục nào".
 
-## Voice vs Tone
+## Giọng văn (Voice) và Sắc thái (Tone)
 
-**Voice** is your brand's personality—consistent everywhere.
-**Tone** adapts to the moment.
+**Giọng văn (Voice)** là cá tính thương hiệu của bạn—nhất quán ở mọi nơi.
+**Sắc thái (Tone)** thay đổi linh hoạt theo từng thời điểm.
 
-| Moment | Tone Shift |
+| Thời điểm | Thay đổi Sắc thái |
 |--------|------------|
-| Success | Celebratory, brief: "Done! Your changes are live." |
-| Error | Empathetic, helpful: "That didn't work. Here's what to try..." |
-| Loading | Reassuring: "Saving your work..." |
-| Destructive confirm | Serious, clear: "Delete this project? This can't be undone." |
+| Thành công | Chúc mừng, ngắn gọn: "Xong! Các thay đổi của bạn đã được cập nhật." |
+| Lỗi | Đồng cảm, giúp đỡ: "Đã có lỗi xảy ra. Hãy thử cách này..." |
+| Đang tải | Trấn an: "Đang lưu công việc của bạn..." |
+| Xác nhận phá hủy | Nghiêm túc, rõ ràng: "Xóa dự án này? Hành động này không thể hoàn tác." |
 
-**Never use humor for errors.** Users are already frustrated. Be helpful, not cute.
+**Tuyệt đối không hài hước khi thông báo lỗi.** Người dùng lúc đó đã đang bực bội rồi. Hãy tỏ ra hữu ích, đừng tỏ ra lém lỉnh.
 
-## Writing for Accessibility
+## Viết cho Khả năng truy cập (Accessibility)
 
-**Link text** must have standalone meaning—"View pricing plans" not "Click here". **Alt text** describes information, not the image—"Revenue increased 40% in Q4" not "Chart". Use `alt=""` for decorative images. **Icon buttons** need `aria-label` for screen reader context.
+**Văn bản liên kết (Link text)** phải có ý nghĩa khi đứng độc lập—"Xem các gói giá" chứ không phải "Bấm vào đây". **Văn bản thay thế (Alt text)** mô tả thông tin, không phải mô tả hình ảnh—"Doanh thu tăng 40% trong quý 4" chứ không phải "Biểu đồ". Sử dụng `alt=""` cho các hình ảnh chỉ mang tính trang trí. **Các nút icon** cần có `aria-label` để trình đọc màn hình hiểu được ngữ cảnh.
 
-## Writing for Translation
+## Viết để phục vụ Dịch thuật
 
-### Plan for Expansion
+### Dự phòng cho việc Mở rộng
 
-German text is ~30% longer than English. Allocate space:
+Văn bản tiếng Đức dài hơn tiếng Anh khoảng 30%. Hãy dành khoảng trống:
 
-| Language | Expansion |
+| Ngôn ngữ | Độ giãn nở |
 |----------|-----------|
-| German | +30% |
-| French | +20% |
-| Finnish | +30-40% |
-| Chinese | -30% (fewer chars, but same width) |
+| Tiếng Đức | +30% |
+| Tiếng Pháp | +20% |
+| Tiếng Phần Lan | +30-40% |
+| Tiếng Trung | -30% (ít ký tự hơn nhưng chiều rộng tương đương) |
 
-### Translation-Friendly Patterns
+### Các mẫu câu Thân thiện với Dịch thuật
 
-Keep numbers separate ("New messages: 3" not "You have 3 new messages"). Use full sentences as single strings (word order varies by language). Avoid abbreviations ("5 minutes ago" not "5 mins ago"). Give translators context about where strings appear.
+Giữ các con số riêng biệt ("Tin nhắn mới: 3" chứ không phải "Bạn có 3 tin nhắn mới"). Sử dụng các câu đầy đủ như một chuỗi văn bản duy nhất (thứ tự từ thay đổi theo ngôn ngữ). Tránh các cụm từ viết tắt ("5 phút trước" chứ không phải "5 ph trước"). Cung cấp ngữ cảnh cho người dịch về nơi chuỗi văn bản sẽ xuất hiện.
 
-## Consistency: The Terminology Problem
+## Sự nhất quán: Vấn đề về Thuật ngữ
 
-Pick one term and stick with it:
+Hãy chọn một thuật ngữ và trung thành với nó:
 
-| Inconsistent | Consistent |
+| Không nhất quán | Nhất quán |
 |--------------|------------|
-| Delete / Remove / Trash | Delete |
-| Settings / Preferences / Options | Settings |
-| Sign in / Log in / Enter | Sign in |
-| Create / Add / New | Create |
+| Xóa / Gỡ bỏ / Thùng rác | Xóa |
+| Cài đặt / Tùy chọn / Ưu tiên | Cài đặt |
+| Đăng nhập / Truy cập / Vào | Đăng nhập |
+| Tạo / Thêm / Mới | Tạo |
 
-Build a terminology glossary and enforce it. Variety creates confusion.
+Xây dựng một bảng thuật ngữ và tuân thủ nó. Sự đa dạng các từ đồng nghĩa chỉ gây ra sự nhầm lẫn.
 
-## Avoid Redundant Copy
+## Tránh các Văn bản Thừa thãi
 
-If the heading explains it, the intro is redundant. If the button is clear, don't explain it again. Say it once, say it well.
+Nếu tiêu đề đã giải thích rồi, đoạn giới thiệu là thừa. Nếu nút bấm đã rõ ràng, đừng giải thích lại nó một lần nữa. Chỉ nói một lần, và nói thật tốt.
 
-## Loading States
+## Trạng thái Đang tải (Loading States)
 
-Be specific: "Saving your draft..." not "Loading...". For long waits, set expectations ("This usually takes 30 seconds") or show progress.
+Hãy cụ thể: "Đang lưu bản nháp của bạn..." thay vì "Đang tải...". Đối với những việc chờ đợi lâu, hãy thiết lập kỳ vọng ("Việc này thường mất khoảng 30 giây") hoặc hiển thị tiến trình.
 
-## Confirmation Dialogs: Use Sparingly
+## Hộp thoại Xác nhận: Hãy sử dụng Tiết kiệm
 
-Most confirmation dialogs are design failures—consider undo instead. When you must confirm: name the action, explain consequences, use specific button labels ("Delete project" / "Keep project", not "Yes" / "No").
+Hầu hết các hộp thoại xác nhận là một sự thất bại trong thiết kế—hãy cân nhắc tính năng hoàn tác (undo) để thay thế. Khi bạn buộc phải bắt xác nhận: hãy gọi tên hành động, giải thích hậu quả, và sử dụng các nút có nhãn cụ thể ("Xóa dự án" / "Giữ lại dự án", không dùng "Có" / "Không").
 
-## Form Instructions
+## Hướng dẫn Biểu mẫu (Form Instructions)
 
-Show format with placeholders, not instructions. For non-obvious fields, explain why you're asking.
+Hiển thị định dạng bằng placeholder, không dùng dòng hướng dẫn. Đối với các trường không hiển nhiên, hãy giải thích tại sao bạn lại yêu cầu thông tin đó.
 
 ---
 
-**Avoid**: Jargon without explanation. Blaming users ("You made an error" → "This field is required"). Vague errors ("Something went wrong"). Varying terminology for variety. Humor for errors.
+**Tránh**: Sử dụng thuật ngữ chuyên môn mà không giải thích. Đổ lỗi cho người dùng ("Bạn đã làm sai" -> "Trường này là bắt buộc"). Các lỗi mơ hồ ("Đã có gì đó không ổn"). Thay đổi thuật ngữ chỉ để cho đa dạng. Sử dụng sự hài hước cho các lỗi.

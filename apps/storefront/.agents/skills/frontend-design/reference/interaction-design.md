@@ -1,96 +1,96 @@
-# Interaction Design
+# Thiết kế Tương tác (Interaction Design)
 
-## The Eight Interactive States
+## Tám Trạng thái Tương tác (The Eight Interactive States)
 
-Every interactive element needs these states designed:
+Mọi thành phần có tính tương tác đều cần được thiết kế cho các trạng thái sau:
 
-| State | When | Visual Treatment |
+| Trạng thái | Khi nào | Xử lý Thị giác |
 |-------|------|------------------|
-| **Default** | At rest | Base styling |
-| **Hover** | Pointer over (not touch) | Subtle lift, color shift |
-| **Focus** | Keyboard/programmatic focus | Visible ring (see below) |
-| **Active** | Being pressed | Pressed in, darker |
-| **Disabled** | Not interactive | Reduced opacity, no pointer |
-| **Loading** | Processing | Spinner, skeleton |
-| **Error** | Invalid state | Red border, icon, message |
-| **Success** | Completed | Green check, confirmation |
+| **Mặc định (Default)** | Khi đang nghỉ | Kiểu dáng cơ bản |
+| **Hover** | Con trỏ di chuyển qua (không dùng cho cảm ứng) | Nâng lên nhẹ, thay đổi màu sắc |
+| **Tiêu điểm (Focus)** | Tiêu điểm từ bàn phím hoặc lập trình | Có vòng bao quanh (focus ring) rõ ràng (xem bên dưới) |
+| **Kích hoạt (Active)** | Đang được nhấn | Nhấn lún xuống, màu tối hơn |
+| **Vô hiệu hóa (Disabled)** | Không thể tương tác | Giảm độ mờ (opacity), không có con trỏ (pointer) |
+| **Đang tải (Loading)** | Đang xử lý | Spinner, skeleton |
+| **Lỗi (Error)** | Trạng thái không hợp lệ | Viền đỏ, icon, thông báo lỗi |
+| **Thành công (Success)** | Đã hoàn thành | Dấu tích xanh, xác nhận |
 
-**The common miss**: Designing hover without focus, or vice versa. They're different. Keyboard users never see hover states.
+**Lỗi thường gặp**: Thiết kế trạng thái hover mà quên focus, hoặc ngược lại. Chúng khác nhau. Người dùng bàn phím sẽ không bao giờ thấy trạng thái hover.
 
-## Focus Rings: Do Them Right
+## Vòng Tiêu điểm (Focus Rings): Hãy làm đúng cách
 
-**Never `outline: none` without replacement.** It's an accessibility violation. Instead, use `:focus-visible` to show focus only for keyboard users:
+**Tuyệt đối không sử dụng `outline: none` mà không có phương án thay thế.** Đây là một lỗi vi phạm khả năng truy cập (accessibility). Thay vào đó, hãy sử dụng `:focus-visible` để chỉ hiển thị vòng tiêu điểm cho người dùng bàn phím:
 
 ```css
-/* Hide focus ring for mouse/touch */
+/* Ẩn vòng tiêu điểm khi dùng chuột/cảm ứng */
 button:focus {
   outline: none;
 }
 
-/* Show focus ring for keyboard */
+/* Hiển thị vòng tiêu điểm khi dùng bàn phím */
 button:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 ```
 
-**Focus ring design**:
-- High contrast (3:1 minimum against adjacent colors)
-- 2-3px thick
-- Offset from element (not inside it)
-- Consistent across all interactive elements
+**Thiết kế vòng tiêu điểm**:
+- Độ tương phản cao (tối thiểu 3:1 so với các màu liền kề).
+- Độ dày 2-3px.
+- Có khoảng cách (offset) so với thành phần (không nằm bên trong nó).
+- Nhất quán trên tất cả các thành phần tương tác.
 
-## Form Design: The Non-Obvious
+## Thiết kế Biểu mẫu (Form Design): Những điều không hiển nhiên
 
-**Placeholders aren't labels**—they disappear on input. Always use visible `<label>` elements. **Validate on blur**, not on every keystroke (exception: password strength). Place errors **below** fields with `aria-describedby` connecting them.
+**Placeholder không phải là label**—chúng biến mất khi người dùng nhập liệu. Hãy luôn sử dụng thành phần `<label>` hiển thị rõ ràng. **Kiểm tra (validate) khi mất tiêu điểm (on blur)**, chứ không phải ở mỗi lần nhấn phím (ngoại trừ: kiểm tra độ mạnh mật khẩu). Đặt thông báo lỗi **bên dưới** các trường nhập liệu và sử dụng `aria-describedby` để kết nối chúng.
 
-## Loading States
+## Trạng thái Đang tải (Loading States)
 
-**Optimistic updates**: Show success immediately, rollback on failure. Use for low-stakes actions (likes, follows), not payments or destructive actions. **Skeleton screens > spinners**—they preview content shape and feel faster than generic spinners.
+**Cập nhật lạc quan (Optimistic updates)**: Hiển thị kết quả thành công ngay lập tức, hoàn tác nếu thất bại. Sử dụng cho các hành động ít rủi ro (like, follow), không dùng cho thanh toán hoặc các hành động phá hủy (destructive). **Skeleton screens > spinners**—chúng mô phỏng hình dạng nội dung và mang lại cảm giác phản hồi nhanh hơn các spinner thông thường.
 
-## Modals: The Inert Approach
+## Modals: Cách tiếp cận "Vô hiệu hóa ngoại vi" (Inert Approach)
 
-Focus trapping in modals used to require complex JavaScript. Now use the `inert` attribute:
+Việc bẫy tiêu điểm (focus trapping) trong các modal trước đây đòi hỏi JavaScript phức tạp. Bây giờ hãy sử dụng thuộc tính `inert`:
 
 ```html
-<!-- When modal is open -->
+<!-- Khi modal đang mở -->
 <main inert>
-  <!-- Content behind modal can't be focused or clicked -->
+  <!-- Nội dung phía sau modal không thể được focus hoặc click -->
 </main>
 <dialog open>
-  <h2>Modal Title</h2>
-  <!-- Focus stays inside modal -->
+  <h2>Tiêu đề Modal</h2>
+  <!-- Tiêu điểm nằm bên trong modal -->
 </dialog>
 ```
 
-Or use the native `<dialog>` element:
+Hoặc sử dụng thành phần `<dialog>` thuần túy (native):
 
 ```javascript
 const dialog = document.querySelector('dialog');
-dialog.showModal();  // Opens with focus trap, closes on Escape
+dialog.showModal();  // Mở với bẫy tiêu điểm, đóng khi nhấn Escape
 ```
 
-## The Popover API
+## Popover API
 
-For tooltips, dropdowns, and non-modal overlays, use native popovers:
+Đối với tooltips, dropdowns và các lớp phủ không phải modal, hãy sử dụng popover thuần túy:
 
 ```html
-<button popovertarget="menu">Open menu</button>
+<button popovertarget="menu">Mở menu</button>
 <div id="menu" popover>
-  <button>Option 1</button>
-  <button>Option 2</button>
+  <button>Tùy chọn 1</button>
+  <button>Tùy chọn 2</button>
 </div>
 ```
 
-**Benefits**: Light-dismiss (click outside closes), proper stacking, no z-index wars, accessible by default.
+**Lợi ích**: Tự động đóng khi click ra ngoài (light-dismiss), xếp lớp đúng cách, không bị xung đột z-index, và mặc định có khả năng truy cập tốt.
 
-## Dropdown & Overlay Positioning
+## Định vị Dropdown & Lớp phủ (Overlay)
 
-Dropdowns rendered with `position: absolute` inside a container that has `overflow: hidden` or `overflow: auto` will be clipped. This is the single most common dropdown bug in generated code.
+Các dropdown được render với `position: absolute` bên trong một container có `overflow: hidden` hoặc `overflow: auto` sẽ bị cắt mất (clipped). Đây là lỗi dropdown phổ biến nhất trong các mã nguồn được tạo tự động.
 
 ### CSS Anchor Positioning
 
-The modern solution uses the CSS Anchor Positioning API to tether an overlay to its trigger without JavaScript:
+Giải pháp hiện đại sử dụng CSS Anchor Positioning API để gắn một lớp phủ vào phần tử kích hoạt của nó mà không cần JavaScript:
 
 ```css
 .trigger {
@@ -104,67 +104,67 @@ The modern solution uses the CSS Anchor Positioning API to tether an overlay to 
   margin-top: 4px;
 }
 
-/* Flip above if no room below */
+/* Đảo lên trên nếu bên dưới không đủ chỗ */
 @position-try --flip-above {
   position-area: block-start span-inline-end;
   margin-bottom: 4px;
 }
 ```
 
-Because the dropdown uses `position: fixed`, it escapes any `overflow` clipping on ancestor elements. The `@position-try` block handles viewport edges automatically. **Browser support**: Chrome 125+, Edge 125+. Not yet in Firefox or Safari - use a fallback for those browsers.
+Bởi vì dropdown sử dụng `position: fixed`, nó thoát khỏi bất kỳ sự cắt xén `overflow` nào ở các phần tử tổ tiên. Khối `@position-try` tự động xử lý các cạnh của khung nhìn (viewport). **Hỗ trợ trình duyệt**: Chrome 125+, Edge 125+. Chưa có trên Firefox hoặc Safari - hãy sử dụng phương án dự phòng (fallback) cho các trình duyệt đó.
 
-### Popover + Anchor Combo
+### Kết hợp Popover + Anchor
 
-Combining the Popover API with anchor positioning gives you stacking, light-dismiss, accessibility, and correct positioning in one pattern:
+Việc kết hợp Popover API với định vị neo (anchor positioning) mang lại khả năng xếp lớp, tự động đóng, khả năng truy cập và định vị chính xác trong một mẫu duy nhất:
 
 ```html
-<button popovertarget="menu" class="trigger">Open</button>
+<button popovertarget="menu" class="trigger">Mở</button>
 <div id="menu" popover class="dropdown">
-  <button>Option 1</button>
-  <button>Option 2</button>
+  <button>Tùy chọn 1</button>
+  <button>Tùy chọn 2</button>
 </div>
 ```
 
-The `popover` attribute places the element in the **top layer**, which sits above all other content regardless of z-index or overflow. No portal needed.
+Thuộc tính `popover` đặt phần tử vào **lớp trên cùng (top layer)**, lớp này nằm trên tất cả các nội dung khác bất kể z-index hay overflow. Không cần dùng cổng (portal).
 
-### Portal / Teleport Pattern
+### Mẫu Cổng / Dịch chuyển (Portal / Teleport Pattern)
 
-In component frameworks, render the dropdown at the document root and position it with JavaScript:
+Trong các framework thành phần (component frameworks), hãy render dropdown ở gốc của tài liệu và định vị nó bằng JavaScript:
 
 - **React**: `createPortal(dropdown, document.body)`
 - **Vue**: `<Teleport to="body">`
-- **Svelte**: Use a portal library or mount to `document.body`
+- **Svelte**: Sử dụng thư viện portal hoặc gắn trực tiếp vào `document.body`
 
-Calculate position from the trigger's `getBoundingClientRect()`, then apply `position: fixed` with `top` and `left` values. Recalculate on scroll and resize.
+Tính toán vị trí từ `getBoundingClientRect()` của phần tử kích hoạt, sau đó áp dụng `position: fixed` với các giá trị `top` và `left`. Tính toán lại khi cuộn trang hoặc thay đổi kích thước cửa sổ.
 
-### Fixed Positioning Fallback
+### Phương án dự phòng với Fixed Positioning
 
-For browsers without anchor positioning support, `position: fixed` with manual coordinates avoids overflow clipping:
+Đối với các trình duyệt không hỗ trợ định vị neo (anchor positioning), việc sử dụng `position: fixed` với tọa độ thủ công sẽ giúp tránh bị cắt xén do overflow:
 
 ```css
 .dropdown {
   position: fixed;
-  /* top/left set via JS from trigger's getBoundingClientRect() */
+  /* top/left được thiết lập qua JS từ getBoundingClientRect() của trigger */
 }
 ```
 
-Check viewport boundaries before rendering. If the dropdown would overflow the bottom edge, flip it above the trigger. If it would overflow the right edge, align it to the trigger's right side instead.
+Hãy kiểm tra các ranh giới của khung nhìn trước khi render. Nếu dropdown vượt quá cạnh dưới, hãy đảo nó lên trên phần tử kích hoạt. Nếu nó vượt quá cạnh phải, hãy căn nó theo cạnh phải của phần tử kích hoạt.
 
-### Anti-Patterns
+### Các mẫu Sai lầm (Anti-Patterns)
 
-- **`position: absolute` inside `overflow: hidden`** - The dropdown will be clipped. Use `position: fixed` or the top layer instead.
-- **Arbitrary z-index values** like `z-index: 9999` - Use a semantic z-index scale: `dropdown (100) -> sticky (200) -> modal-backdrop (300) -> modal (400) -> toast (500) -> tooltip (600)`.
-- **Rendering dropdown markup inline** without an escape hatch from the parent's stacking context. Either use `popover` (top layer), a portal, or `position: fixed`.
+- **`position: absolute` bên trong `overflow: hidden`** - Dropdown sẽ bị cắt. Hãy sử dụng `position: fixed` hoặc lớp trên cùng (top layer).
+- **Các giá trị z-index tùy tiện** như `z-index: 9999` - Hãy sử dụng thang đo z-index ngữ nghĩa: `dropdown (100) -> sticky (200) -> modal-backdrop (300) -> modal (400) -> toast (500) -> tooltip (600)`.
+- **Render mã nguồn dropdown nội dòng** mà không có lối thoát khỏi v ngữ cảnh xếp lớp (stacking context) của cha. Hãy sử dụng `popover` (top layer), portal, hoặc `position: fixed`.
 
-## Destructive Actions: Undo > Confirm
+## Các hành động Phá hủy (Destructive Actions): Hoàn tác > Xác nhận
 
-**Undo is better than confirmation dialogs**—users click through confirmations mindlessly. Remove from UI immediately, show undo toast, actually delete after toast expires. Use confirmation only for truly irreversible actions (account deletion), high-cost actions, or batch operations.
+**Hoàn tác (Undo) tốt hơn các hộp thoại xác nhận (confirmation dialogs)**—người dùng thường click qua các hộp thoại xác nhận một cách vô thức. Hãy xóa ngay khỏi UI, hiển thị thông báo "hoàn tác" (undo toast), và chỉ thực sự xóa sau khi thông báo hết hạn. Chỉ sử dụng xác nhận cho các hành động thực sự không thể đảo ngược (xóa tài khoản), các hành động tốn kém hoặc các thao tác hàng loạt.
 
-## Keyboard Navigation Patterns
+## Các Mẫu Điều hướng Bàn phím (Keyboard Navigation Patterns)
 
 ### Roving Tabindex
 
-For component groups (tabs, menu items, radio groups), one item is tabbable; arrow keys move within:
+Đối với các nhóm thành phần (tabs, menu items, radio groups), một mục có thể được tab vào; các phím mũi tên sẽ di chuyển bên trong:
 
 ```html
 <div role="tablist">
@@ -174,22 +174,22 @@ For component groups (tabs, menu items, radio groups), one item is tabbable; arr
 </div>
 ```
 
-Arrow keys move `tabindex="0"` between items. Tab moves to the next component entirely.
+Các phím mũi tên di chuyển `tabindex="0"` giữa các mục. Phím Tab sẽ di chuyển sang thành phần tiếp theo hoàn toàn.
 
-### Skip Links
+### Liên kết Bỏ qua (Skip Links)
 
-Provide skip links (`<a href="#main-content">Skip to main content</a>`) for keyboard users to jump past navigation. Hide off-screen, show on focus.
+Cung cấp các liên kết bỏ qua (`<a href="#main-content">Bỏ qua để đến nội dung chính</a>`) cho người dùng bàn phím để nhảy qua phần điều hướng. Ẩn khỏi màn hình, chỉ hiển thị khi được focus.
 
-## Gesture Discoverability
+## Khả năng khám phá Cử chỉ (Gesture Discoverability)
 
-Swipe-to-delete and similar gestures are invisible. Hint at their existence:
+Vuốt để xóa (Swipe-to-delete) và các cử chỉ tương tự là vô hình. Hãy gợi ý về sự tồn tại của chúng:
 
-- **Partially reveal**: Show delete button peeking from edge
-- **Onboarding**: Coach marks on first use
-- **Alternative**: Always provide a visible fallback (menu with "Delete")
+- **Tiết lộ một phần (Partially reveal)**: Hiển thị một phần của nút xóa ở cạnh.
+- **Hướng dẫn (Onboarding)**: Hiển thị các chỉ dẫn (coach marks) trong lần sử dụng đầu tiên.
+- **Phương án thay thế**: Luôn cung cấp một phương án dự phòng hiển thị rõ ràng (ví dụ: menu với nút "Xóa").
 
-Don't rely on gestures as the only way to perform actions.
+Đừng để cử chỉ là cách duy nhất để thực hiện các hành động.
 
 ---
 
-**Avoid**: Removing focus indicators without alternatives. Using placeholder text as labels. Touch targets <44x44px. Generic error messages. Custom controls without ARIA/keyboard support.
+**Tránh**: Loại bỏ chỉ báo focus mà không có phương án thay thế. Sử dụng văn bản gợi ý làm nhãn. Mục tiêu chạm <44x44px. Thông báo lỗi chung chung. Các bộ điều khiển tùy chỉnh mà không hỗ trợ ARIA/bàn phím.

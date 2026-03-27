@@ -1,69 +1,69 @@
-# Motion Design
+# Thiết kế Chuyển động (Motion Design)
 
-## Duration: The 100/300/500 Rule
+## Thời gian (Duration): Quy tắc 100/300/500
 
-Timing matters more than easing. These durations feel right for most UI:
+Thời gian quan trọng hơn hiệu ứng (easing). Những khoảng thời gian này mang lại cảm giác đúng đắn cho hầu hết giao diện người dùng (UI):
 
-| Duration | Use Case | Examples |
+| Thời gian | Trường hợp Sử dụng | Ví dụ |
 |----------|----------|----------|
-| **100-150ms** | Instant feedback | Button press, toggle, color change |
-| **200-300ms** | State changes | Menu open, tooltip, hover states |
-| **300-500ms** | Layout changes | Accordion, modal, drawer |
-| **500-800ms** | Entrance animations | Page load, hero reveals |
+| **100-150ms** | Phản hồi tức thì | Nhấn nút, bật/tắt (toggle), thay đổi màu sắc |
+| **200-300ms** | Thay đổi trạng thái | Mở menu, tooltip, các trạng thái hover |
+| **300-500ms** | Thay đổi bố cục | Accordion, modal, ngăn kéo (drawer) |
+| **500-800ms** | Hiệu ứng xuất hiện | Tải trang, tiết lộ phần chính (hero reveals) |
 
-**Exit animations are faster than entrances**—use ~75% of enter duration.
+**Hiệu ứng biến mất nhanh hơn hiệu ứng xuất hiện**—hãy sử dụng khoảng ~75% thời gian xuất hiện.
 
-## Easing: Pick the Right Curve
+## Hiệu ứng (Easing): Chọn đường cong phù hợp
 
-**Don't use `ease`.** It's a compromise that's rarely optimal. Instead:
+**Đừng sử dụng `ease`.** Đây là một phương án thỏa hiệp và hiếm khi tối ưu. Thay vào đó:
 
-| Curve | Use For | CSS |
+| Đường cong | Sử dụng cho | CSS |
 |-------|---------|-----|
-| **ease-out** | Elements entering | `cubic-bezier(0.16, 1, 0.3, 1)` |
-| **ease-in** | Elements leaving | `cubic-bezier(0.7, 0, 0.84, 0)` |
-| **ease-in-out** | State toggles (there → back) | `cubic-bezier(0.65, 0, 0.35, 1)` |
+| **ease-out** | Các thành phần đi vào | `cubic-bezier(0.16, 1, 0.3, 1)` |
+| **ease-in** | Các thành phần đi ra | `cubic-bezier(0.7, 0, 0.84, 0)` |
+| **ease-in-out** | Các trạng thái bật/tắt (đi -> về) | `cubic-bezier(0.65, 0, 0.35, 1)` |
 
-**For micro-interactions, use exponential curves**—they feel natural because they mimic real physics (friction, deceleration):
+**Đối với các tương tác siêu nhỏ (micro-interactions), hãy sử dụng các đường cong hàm mũ (exponential curves)**—chúng mang lại cảm giác tự nhiên vì mô phỏng vật lý thực tế (ma sát, giảm tốc):
 
 ```css
-/* Quart out - smooth, refined (recommended default) */
+/* Quart out - mượt mà, tinh tế (khuyên dùng làm mặc định) */
 --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 
-/* Quint out - slightly more dramatic */
+/* Quint out - kịch tính hơn một chút */
 --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 
-/* Expo out - snappy, confident */
+/* Expo out - nhanh gọn, tự tin */
 --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 ```
 
-**Avoid bounce and elastic curves.** They were trendy in 2015 but now feel tacky and amateurish. Real objects don't bounce when they stop—they decelerate smoothly. Overshoot effects draw attention to the animation itself rather than the content.
+**Tránh các đường cong nảy (bounce) và đàn hồi (elastic).** Chúng đã từng là xu hướng vào năm 2015 nhưng hiện nay mang lại cảm giác rẻ tiền và thiếu chuyên nghiệp. Các vật thể thực tế không nảy khi dừng lại—chúng giảm tốc một cách mượt mà. Các hiệu ứng vượt quá (overshoot) làm người dùng chú ý vào chính hiệu ứng đó thay vì nội dung.
 
-## The Only Two Properties You Should Animate
+## Chỉ có hai Thuộc tính bạn nên tạo Chuyển động
 
-**transform** and **opacity** only—everything else causes layout recalculation. For height animations (accordions), use `grid-template-rows: 0fr → 1fr` instead of animating `height` directly.
+Chỉ nên sử dụng **transform** và **opacity**—tất cả các thuộc tính khác đều gây ra việc tính toán lại bố cục (layout recalculation). Đối với hiệu ứng chiều cao (như accordions), hãy sử dụng `grid-template-rows: 0fr → 1fr` thay vì thay đổi trực tiếp `height`.
 
-## Staggered Animations
+## Chuyển động So le (Staggered Animations)
 
-Use CSS custom properties for cleaner stagger: `animation-delay: calc(var(--i, 0) * 50ms)` with `style="--i: 0"` on each item. **Cap total stagger time**—10 items at 50ms = 500ms total. For many items, reduce per-item delay or cap staggered count.
+Sử dụng các biến CSS (CSS custom properties) để tạo hiệu ứng so le gọn gàng hơn: `animation-delay: calc(var(--i, 0) * 50ms)` với `style="--i: 0"` trên mỗi mục. **Giới hạn tổng thời gian so le**—10 mục với 50ms = 500ms tổng cộng. Đối với nhiều mục, hãy giảm độ trễ của từng mục hoặc giới hạn số mục được so le.
 
-## Reduced Motion
+## Giảm Chuyển động (Reduced Motion)
 
-This is not optional. Vestibular disorders affect ~35% of adults over 40.
+Đây không phải là một tùy chọn thêm. Các rối loạn tiền đình (vestibular disorders) ảnh hưởng đến ~35% người trưởng thành trên 40 tuổi.
 
 ```css
-/* Define animations normally */
+/* Định nghĩa hiệu ứng bình thường */
 .card {
   animation: slide-up 500ms ease-out;
 }
 
-/* Provide alternative for reduced motion */
+/* Cung cấp phương án thay thế khi người dùng muốn giảm chuyển động */
 @media (prefers-reduced-motion: reduce) {
   .card {
-    animation: fade-in 200ms ease-out;  /* Crossfade instead of motion */
+    animation: fade-in 200ms ease-out;  /* Sử dụng hiệu ứng mờ dần thay vì chuyển động */
   }
 }
 
-/* Or disable entirely */
+/* Hoặc tắt hoàn toàn */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -72,28 +72,28 @@ This is not optional. Vestibular disorders affect ~35% of adults over 40.
 }
 ```
 
-**What to preserve**: Functional animations like progress bars, loading spinners (slowed down), and focus indicators should still work—just without spatial movement.
+**Những gì cần giữ lại**: Các hiệu ứng chức năng như thanh tiến trình (progress bars), spinner đang tải (được làm chậm lại) và các chỉ báo tiêu điểm (focus indicators) vẫn nên hoạt động—chỉ là không có chuyển động trong không gian.
 
-## Perceived Performance
+## Hiệu suất Cảm nhận (Perceived Performance)
 
-**Nobody cares how fast your site is—just how fast it feels.** Perception can be as effective as actual performance.
+**Không ai quan tâm trang web của bạn nhanh đến mức nào—họ chỉ quan tâm nó mang lại cảm giác nhanh đến mức nào.** Cảm nhận có thể hiệu quả tương đương với hiệu suất thực tế.
 
-**The 80ms threshold**: Our brains buffer sensory input for ~80ms to synchronize perception. Anything under 80ms feels instant and simultaneous. This is your target for micro-interactions.
+**Ngưỡng 80ms**: Bộ não của chúng ta đệm thông tin giác quan trong khoảng ~80ms để đồng bộ hóa cảm nhận. Bất cứ điều gì dưới 80ms đều mang lại cảm giác tức thì và đồng thời. Đây là mục tiêu của bạn cho các tương tác siêu nhỏ.
 
-**Active vs passive time**: Passive waiting (staring at a spinner) feels longer than active engagement. Strategies to shift the balance:
+**Thời gian chủ động và thụ động**: Chờ đợi thụ động (nhìn chằm chằm vào một spinner) có cảm giác lâu hơn so với tham gia chủ động. Các chiến lược để thay đổi sự cân bằng:
 
-- **Preemptive start**: Begin transitions immediately while loading (iOS app zoom, skeleton UI). Users perceive work happening.
-- **Early completion**: Show content progressively—don't wait for everything. Video buffering, progressive images, streaming HTML.
-- **Optimistic UI**: Update the interface immediately, handle failures gracefully. Instagram likes work offline—the UI updates instantly, syncs later. Use for low-stakes actions; avoid for payments or destructive operations.
+- **Bắt đầu sớm (Preemptive start)**: Bắt đầu các quá trình chuyển đổi ngay lập tức trong khi đang tải (giống như phóng to ứng dụng trên iOS, skeleton UI). Người dùng cảm thấy công việc đang diễn ra.
+- **Hoàn thành sớm**: Hiển thị nội dung dần dần—đừng đợi tất cả mọi thứ. Đệm video (video buffering), hình ảnh tăng dần (progressive images), streaming HTML.
+- **UI Lạc quan (Optimistic UI)**: Cập nhật giao diện ngay lập tức, xử lý các lỗi một cách khéo léo. Nút like trên Instagram hoạt động ngay cả khi ngoại tuyến—UI cập nhật tức thì, đồng bộ sau. Sử dụng cho các hành động ít rủi ro; tránh dùng cho thanh toán hoặc các thao tác phá hủy.
 
-**Easing affects perceived duration**: Ease-in (accelerating toward completion) makes tasks feel shorter because the peak-end effect weights final moments heavily. Ease-out feels satisfying for entrances, but ease-in toward a task's end compresses perceived time.
+**Hiệu ứng ảnh hưởng đến thời gian cảm nhận**: Ease-in (tăng tốc về phía kết thúc) làm cho các nhiệm vụ có cảm giác ngắn hơn vì hiệu ứng "đỉnh-kết" (peak-end effect) nhấn mạnh vào những khoảnh khắc cuối cùng. Ease-out mang lại cảm giác hài lòng khi bắt đầu, nhưng ease-in về phía kết thúc nhiệm vụ sẽ nén thời gian cảm nhận lại.
 
-**Caution**: Too-fast responses can decrease perceived value. Users may distrust instant results for complex operations (search, analysis). Sometimes a brief delay signals "real work" is happening.
+**Thận trọng**: Phản hồi quá nhanh có thể làm giảm giá trị cảm nhận. Người dùng có thể không tin tưởng các kết quả tức thì cho các thao tác phức tạp (tìm kiếm, phân tích). Đôi khi một sự trì hoãn ngắn báo hiệu rằng "công việc thực tế" đang được thực hiện.
 
-## Performance
+## Hiệu suất (Performance)
 
-Don't use `will-change` preemptively—only when animation is imminent (`:hover`, `.animating`). For scroll-triggered animations, use Intersection Observer instead of scroll events; unobserve after animating once. Create motion tokens for consistency (durations, easings, common transitions).
+Đừng sử dụng `will-change` một cách tùy tiện—chỉ dùng khi hiệu ứng sắp xảy ra (`:hover`, `.animating`). Đối với các hiệu ứng kích hoạt khi cuộn (scroll-triggered), hãy sử dụng Intersection Observer thay vì các sự kiện scroll; hãy ngắt quan sát (unobserve) sau khi hiệu ứng đã diễn ra một lần. Tạo các mã hiệu ứng (motion tokens) để đạt được sự nhất quán (thời gian, hiệu ứng, các chuyển đổi phổ biến).
 
 ---
 
-**Avoid**: Animating everything (animation fatigue is real). Using >500ms for UI feedback. Ignoring `prefers-reduced-motion`. Using animation to hide slow loading.
+**Tránh**: Tạo hiệu ứng cho tất cả mọi thứ (sự mệt mỏi vì hiệu ứng là có thật). Sử dụng >500ms cho các phản hồi UI. Bỏ qua `prefers-reduced-motion`. Sử dụng hiệu ứng để che giấu việc tải trang chậm.

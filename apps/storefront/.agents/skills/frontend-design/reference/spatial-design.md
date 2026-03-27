@@ -1,53 +1,53 @@
-# Spatial Design
+# Thiết kế Không gian (Spatial Design)
 
-## Spacing Systems
+## Hệ thống Khoảng cách (Spacing Systems)
 
-### Use 4pt Base, Not 8pt
+### Sử dụng Cơ số 4pt, không phải 8pt
 
-8pt systems are too coarse—you'll frequently need 12px (between 8 and 16). Use 4pt for granularity: 4, 8, 12, 16, 24, 32, 48, 64, 96px.
+Hệ thống 8pt quá thô—bạn sẽ thường xuyên cần mức 12px (nằm giữa 8 và 16). Hãy sử dụng cơ số 4pt để có độ chi tiết tốt hơn: 4, 8, 12, 16, 24, 32, 48, 64, 96px.
 
-### Name Tokens Semantically
+### Đặt tên Token theo Ngữ nghĩa
 
-Name by relationship (`--space-sm`, `--space-lg`), not value (`--spacing-8`). Use `gap` instead of margins for sibling spacing—it eliminates margin collapse and cleanup hacks.
+Đặt tên theo mối quan hệ (`--space-sm`, `--space-lg`), không đặt theo giá trị (`--spacing-8`). Hãy sử dụng `gap` thay vì margin cho khoảng cách giữa các phần tử cùng cấp—nó giúp loại bỏ việc gộp margin (margin collapse) và các thủ thuật dọn dẹp (cleanup hacks).
 
-## Grid Systems
+## Hệ thống Lưới (Grid Systems)
 
-### The Self-Adjusting Grid
+### Lưới tự Điều chỉnh (The Self-Adjusting Grid)
 
-Use `repeat(auto-fit, minmax(280px, 1fr))` for responsive grids without breakpoints. Columns are at least 280px, as many as fit per row, leftovers stretch. For complex layouts, use named grid areas (`grid-template-areas`) and redefine them at breakpoints.
+Sử dụng `repeat(auto-fit, minmax(280px, 1fr))` cho các lưới đáp ứng mà không cần điểm ngắt (breakpoints). Các cột có chiều rộng ít nhất 280px, hiển thị tối đa số cột có thể trên một hàng, và phần còn lại sẽ tự giãn ra. Đối với các bố cục phức tạp, hãy sử dụng các vùng lưới có tên (`grid-template-areas`) và định nghĩa lại chúng tại các điểm ngắt.
 
-## Visual Hierarchy
+## Phân cấp Thị giác (Visual Hierarchy)
 
-### The Squint Test
+### Kiểm tra bằng cách "Nheo mắt" (The Squint Test)
 
-Blur your eyes (or screenshot and blur). Can you still identify:
-- The most important element?
-- The second most important?
-- Clear groupings?
+Hãy nheo mắt lại (hoặc chụp màn hình và làm mờ nó). Bạn có còn nhận diện được:
+- Phần tử quan trọng nhất?
+- Phần tử quan trọng thứ hai?
+- Các nhóm được phân chia rõ ràng?
 
-If everything looks the same weight blurred, you have a hierarchy problem.
+Nếu mọi thứ trông có trọng lượng như nhau khi bị làm mờ, bạn đang gặp vấn đề về phân cấp.
 
-### Hierarchy Through Multiple Dimensions
+### Phân cấp thông qua Nhiều Chiều (Dimensions)
 
-Don't rely on size alone. Combine:
+Đừng chỉ dựa vào kích thước. Hãy kết hợp:
 
-| Tool | Strong Hierarchy | Weak Hierarchy |
+| Công cụ | Phân cấp Mạnh | Phân cấp Yếu |
 |------|------------------|----------------|
-| **Size** | 3:1 ratio or more | <2:1 ratio |
-| **Weight** | Bold vs Regular | Medium vs Regular |
-| **Color** | High contrast | Similar tones |
-| **Position** | Top/left (primary) | Bottom/right |
-| **Space** | Surrounded by white space | Crowded |
+| **Kích thước** | Tỷ lệ 3:1 hoặc hơn | Tỷ lệ <2:1 |
+| **Độ dày (Weight)** | Đậm (Bold) so với Thường (Regular) | Trung bình (Medium) so với Thường |
+| **Màu sắc** | Độ tương phản cao | Các tông màu tương tự |
+| **Vị trí** | Trên/Trái (Chính) | Dưới/Phải |
+| **Không gian** | Được bao quanh bởi khoảng trắng | Đông đúc |
 
-**The best hierarchy uses 2-3 dimensions at once**: A heading that's larger, bolder, AND has more space above it.
+**Cách phân cấp tốt nhất là sử dụng 2-3 chiều cùng lúc**: Một tiêu đề vừa lớn hơn, vừa đậm hơn, VÀ có nhiều khoảng trống phía trên hơn.
 
-### Cards Are Not Required
+### Thẻ (Cards) không phải là Bắt buộc
 
-Cards are overused. Spacing and alignment create visual grouping naturally. Use cards only when content is truly distinct and actionable, items need visual comparison in a grid, or content needs clear interaction boundaries. **Never nest cards inside cards**—use spacing, typography, and subtle dividers for hierarchy within a card.
+Thẻ đang bị lạm dụng quá nhiều. Khoảng cách và căn lề có thể tạo ra các nhóm thị giác một cách tự nhiên. Chỉ sử dụng thẻ khi nội dung thực sự tách biệt và có thể thực hiện hành động, khi các mục cần so sánh thị giác trong một lưới, hoặc nội dung cần các ranh giới tương tác rõ ràng. **Tuyệt đối không lồng thẻ trong thẻ**—hãy sử dụng khoảng cách, kiểu chữ và các đường kẻ phân chia tinh tế để tạo phân cấp bên trong một thẻ.
 
-## Container Queries
+## Truy vấn Container (Container Queries)
 
-Viewport queries are for page layouts. **Container queries are for components**:
+Các truy vấn khung nhìn (viewport queries) dành cho bố cục trang. **Truy vấn container dành cho các thành phần**:
 
 ```css
 .card-container {
@@ -59,7 +59,7 @@ Viewport queries are for page layouts. **Container queries are for components**:
   gap: var(--space-md);
 }
 
-/* Card layout changes based on its container, not viewport */
+/* Bố cục thẻ thay đổi dựa trên container của chính nó, không phải khung nhìn */
 @container (min-width: 400px) {
   .card {
     grid-template-columns: 120px 1fr;
@@ -67,19 +67,19 @@ Viewport queries are for page layouts. **Container queries are for components**:
 }
 ```
 
-**Why this matters**: A card in a narrow sidebar stays compact, while the same card in a main content area expands—automatically, without viewport hacks.
+**Tại sao điều này lại quan trọng**: Một chiếc thẻ trong một thanh bên (sidebar) hẹp vẫn sẽ giữ được sự gọn gàng, trong khi chính chiếc thẻ đó khi nằm ở vùng nội dung chính sẽ tự động mở rộng ra—mà không cần đến các thủ thuật viewport.
 
-## Optical Adjustments
+## Điều chỉnh Thị giác (Optical Adjustments)
 
-Text at `margin-left: 0` looks indented due to letterform whitespace—use negative margin (`-0.05em`) to optically align. Geometrically centered icons often look off-center; play icons need to shift right, arrows shift toward their direction.
+Văn bản tại `margin-left: 0` trông có vẻ bị thụt vào trong do khoảng trắng của các ký tự—hãy sử dụng margin âm (`-0.05em`) để căn chỉnh chính xác về mặt thị giác. Các icon được căn giữa về mặt hình học thường trông lệch tâm; icon "play" cần dịch sang phải, icon mũi tên dịch về hướng của chúng.
 
-### Touch Targets vs Visual Size
+### Mục tiêu Chạm so với Kích thước Thị giác
 
-Buttons can look small but need large touch targets (44px minimum). Use padding or pseudo-elements:
+Các nút có thể trông nhỏ nhưng cần mục tiêu chạm lớn (tối thiểu 44px). Hãy sử dụng padding hoặc các phần tử giả (pseudo-elements):
 
 ```css
 .icon-button {
-  width: 24px;  /* Visual size */
+  width: 24px;  /* Kích thước thị giác */
   height: 24px;
   position: relative;
 }
@@ -87,14 +87,14 @@ Buttons can look small but need large touch targets (44px minimum). Use padding 
 .icon-button::before {
   content: '';
   position: absolute;
-  inset: -10px;  /* Expand tap target to 44px */
+  inset: -10px;  /* Mở rộng vùng chạm lên 44px */
 }
 ```
 
-## Depth & Elevation
+## Độ sâu & Độ cao (Depth & Elevation)
 
-Create semantic z-index scales (dropdown → sticky → modal-backdrop → modal → toast → tooltip) instead of arbitrary numbers. For shadows, create a consistent elevation scale (sm → md → lg → xl). **Key insight**: Shadows should be subtle—if you can clearly see it, it's probably too strong.
+Tạo các thang đo z-index theo ngữ nghĩa (dropdown → sticky → modal-backdrop → modal → toast → tooltip) thay vì các con số tùy tiện. Đối với bóng đổ, hãy tạo một thang đo độ cao nhất quán (sm → md → lg → xl). **Điểm mấu chốt**: Bóng đổ nên tinh tế—nếu bạn có thể nhìn thấy nó quá rõ ràng, có lẽ nó đang quá mạnh.
 
 ---
 
-**Avoid**: Arbitrary spacing values outside your scale. Making all spacing equal (variety creates hierarchy). Creating hierarchy through size alone - combine size, weight, color, and space.
+**Tránh**: Sử dụng các giá trị khoảng cách tùy tiện không nằm trong hệ thống. Làm cho tất cả các khoảng cách bằng nhau (sự đa dạng tạo ra phân cấp). Chỉ tạo phân cấp qua kích thước - hãy kết hợp kích thước, độ dày, màu sắc và không gian.

@@ -1,17 +1,17 @@
 ---
 name: git-commit
-description: 'Execute git commit with conventional commit message analysis, intelligent staging, and message generation. Use when user asks to commit changes, create a git commit, or mentions "/commit". Supports: (1) Auto-detecting type and scope from changes, (2) Generating conventional commit messages from diff, (3) Interactive commit with optional type/scope/description overrides, (4) Intelligent file staging for logical grouping'
+description: 'Thực hiện lệnh git commit với phân tích thông điệp commit theo chuẩn Conventional Commits, thông minh trong việc staging và tạo thông điệp. Sử dụng khi người dùng yêu cầu commit các thay đổi, tạo một git commit, hoặc đề cập đến "/commit". Hỗ trợ: (1) Tự động nhận diện loại (type) và phạm vi (scope) từ các thay đổi, (2) Tạo thông điệp commit theo chuẩn từ kết quả diff, (3) Commit tương tác với các tùy chọn ghi đè loại/phạm vi/mô tả, (4) Staging file thông minh để phân nhóm logic'
 license: MIT
 allowed-tools: Bash
 ---
 
-# Git Commit with Conventional Commits
+# Git Commit với Conventional Commits
 
-## Overview
+## Tổng quan (Overview)
 
-Create standardized, semantic git commits using the Conventional Commits specification. Analyze the actual diff to determine appropriate type, scope, and message.
+Tạo ra các git commit tiêu chuẩn, mang tính ngữ nghĩa bằng cách sử dụng đặc tả Conventional Commits. Phân tích kết quả diff thực tế để xác định loại (type), phạm vi (scope) và thông điệp (message) phù hợp.
 
-## Conventional Commit Format
+## Định dạng Conventional Commit (Format)
 
 ```
 <type>[optional scope]: <description>
@@ -21,82 +21,82 @@ Create standardized, semantic git commits using the Conventional Commits specifi
 [optional footer(s)]
 ```
 
-## Commit Types
+## Các loại Commit (Commit Types)
 
-| Type       | Purpose                        |
+| Loại (Type) | Mục đích (Purpose)             |
 | ---------- | ------------------------------ |
-| `feat`     | New feature                    |
-| `fix`      | Bug fix                        |
-| `docs`     | Documentation only             |
-| `style`    | Formatting/style (no logic)    |
-| `refactor` | Code refactor (no feature/fix) |
-| `perf`     | Performance improvement        |
-| `test`     | Add/update tests               |
-| `build`    | Build system/dependencies      |
-| `ci`       | CI/config changes              |
-| `chore`    | Maintenance/misc               |
-| `revert`   | Revert commit                  |
+| `feat`     | Tính năng mới (New feature)    |
+| `fix`      | Sửa lỗi (Bug fix)              |
+| `docs`     | Chỉ tài liệu (Documentation only) |
+| `style`    | Định dạng/phong cách (Formatting/style) |
+| `refactor` | Tái cấu trúc mã (Code refactor) |
+| `perf`     | Cải thiện hiệu suất (Performance improvement) |
+| `test`     | Thêm/cập nhật kiểm thử (Add/update tests) |
+| `build`    | Hệ thống build/phụ thuộc (Build system/dependencies) |
+| `ci`       | Thay đổi CI/cấu hình (CI/config changes) |
+| `chore`    | Bảo trì/linh tinh (Maintenance/misc) |
+| `revert`   | Hoàn tác commit (Revert commit) |
 
-## Breaking Changes
+## Thay đổi gây phá vỡ (Breaking Changes)
 
 ```
-# Exclamation mark after type/scope
-feat!: remove deprecated endpoint
+# Dấu chấm than sau type/scope
+feat!: loại bỏ endpoint đã lỗi thời
 
-# BREAKING CHANGE footer
-feat: allow config to extend other configs
+# Footer BREAKING CHANGE
+feat: cho phép cấu hình mở rộng các cấu hình khác
 
-BREAKING CHANGE: `extends` key behavior changed
+BREAKING CHANGE: hành vi của khóa `extends` đã thay đổi
 ```
 
-## Workflow
+## Quy trình làm việc (Workflow)
 
-### 1. Analyze Diff
+### 1. Phân tích Diff (Analyze Diff)
 
 ```bash
-# If files are staged, use staged diff
+# Nếu các file đã được staged, sử dụng staged diff
 git diff --staged
 
-# If nothing staged, use working tree diff
+# Nếu chưa có gì được staged, sử dụng working tree diff
 git diff
 
-# Also check status
+# Đồng thời kiểm tra trạng thái
 git status --porcelain
 ```
 
-### 2. Stage Files (if needed)
+### 2. Staging File (nếu cần)
 
-If nothing is staged or you want to group changes differently:
+Nếu chưa có gì được staged hoặc bạn muốn phân nhóm các thay đổi theo cách khác:
 
 ```bash
-# Stage specific files
+# Stage các file cụ thể
 git add path/to/file1 path/to/file2
 
-# Stage by pattern
+# Stage theo mẫu (pattern)
 git add *.test.*
 git add src/components/*
 
-# Interactive staging
+# Staging tương tác
 git add -p
 ```
 
-**Never commit secrets** (.env, credentials.json, private keys).
+**Tuyệt đối không bao giờ commit các bí mật (secrets)** như (.env, credentials.json, các khóa riêng tư).
 
-### 3. Generate Commit Message
+### 3. Tạo Thông điệp Commit (Generate Commit Message)
 
-Analyze the diff to determine:
+Phân tích kết quả diff để xác định:
 
-- **Type**: What kind of change is this?
-- **Scope**: What area/module is affected?
-- **Description**: One-line summary of what changed (present tense, imperative mood, <72 chars)
+- **Loại (Type)**: Thay đổi này thuộc loại nào?
+- **Phạm vi (Scope)**: Khu vực/mô-đun nào bị ảnh hưởng?
+- **Mô tả (Description)**: Bản tóm tắt một dòng về những gì đã thay đổi (thì hiện tại, câu mệnh lệnh, <72 ký tự).
 
-### 4. Execute Commit
+### 4. Thực thi Commit (Execute Commit)
 
 ```bash
-# Single line
+# Một dòng
 git commit -m "<type>[scope]: <description>"
 
-# Multi-line with body/footer
+# Nhiều dòng với thân bài/footer
 git commit -m "$(cat <<'EOF'
 <type>[scope]: <description>
 
@@ -107,18 +107,18 @@ EOF
 )"
 ```
 
-## Best Practices
+## Các thực hành tốt nhất (Best Practices)
 
-- One logical change per commit
-- Present tense: "add" not "added"
-- Imperative mood: "fix bug" not "fixes bug"
-- Reference issues: `Closes #123`, `Refs #456`
-- Keep description under 72 characters
+- Một thay đổi logic cho mỗi commit.
+- Sử dụng thì hiện tại: "add" thay vì "added".
+- Sử dụng câu mệnh lệnh: "fix bug" thay vì "fixes bug".
+- Tham chiếu đến các issues: `Closes #123`, `Refs #456`.
+- Giữ mô tả dưới 72 ký tự.
 
-## Git Safety Protocol
+## Giao thức An toàn Git (Git Safety Protocol)
 
-- NEVER update git config
-- NEVER run destructive commands (--force, hard reset) without explicit request
-- NEVER skip hooks (--no-verify) unless user asks
-- NEVER force push to main/master
-- If commit fails due to hooks, fix and create NEW commit (don't amend)
+- TUYỆT ĐỐI KHÔNG cập nhật cấu hình git (git config).
+- TUYỆT ĐỐI KHÔNG chạy các lệnh có tính hủy hoại (--force, hard reset) mà không có yêu cầu rõ ràng.
+- TUYỆT ĐỐI KHÔNG bỏ qua các hooks (--no-verify) trừ khi người dùng yêu cầu.
+- TUYỆT ĐỐI KHÔNG force push vào main/master.
+- Nếu commit thất bại do hooks, hãy sửa và tạo commit MỚI (đừng amend).

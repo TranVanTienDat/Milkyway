@@ -1,33 +1,33 @@
 ---
 name: seo
-description: Optimize for search engine visibility and ranking. Use when asked to "improve SEO", "optimize for search", "fix meta tags", "add structured data", "sitemap optimization", or "search engine optimization".
+description: Tối ưu hóa cho khả năng hiển thị và xếp hạng của công cụ tìm kiếm. Sử dụng khi được yêu cầu "improve SEO", "optimize for search", "fix meta tags", "add structured data", "sitemap optimization", hoặc "search engine optimization".
 license: MIT
 metadata:
   author: web-quality-skills
   version: "1.0"
 ---
 
-# SEO optimization
+# Tối ưu hóa SEO (SEO optimization)
 
-Search engine optimization based on Lighthouse SEO audits and Google Search guidelines. Focus on technical SEO, on-page optimization, and structured data.
+Tối ưu hóa công cụ tìm kiếm dựa trên các kiểm tra SEO của Lighthouse và hướng dẫn Tìm kiếm của Google. Tập trung vào SEO kỹ thuật (technical SEO), tối ưu hóa trên trang (on-page optimization) và dữ liệu có cấu trúc (structured data).
 
-## SEO fundamentals
+## Các yếu tố cơ bản của SEO (SEO fundamentals)
 
-Search ranking factors (approximate influence):
+Các yếu tố xếp hạng tìm kiếm (ảnh hưởng xấp xỉ):
 
-| Factor | Influence | This Skill |
+| Yếu tố | Ảnh hưởng | Skill này |
 |--------|-----------|------------|
-| Content quality & relevance | ~40% | Partial (structure) |
-| Backlinks & authority | ~25% | ✗ |
-| Technical SEO | ~15% | ✓ |
-| Page experience (Core Web Vitals) | ~10% | See [Core Web Vitals](../core-web-vitals/SKILL.md) |
-| On-page SEO | ~10% | ✓ |
+| Chất lượng & mức độ liên quan của nội dung | ~40% | Một phần (cấu trúc) |
+| Backlinks & uy tín | ~25% | ✗ |
+| SEO kỹ thuật (Technical SEO) | ~15% | ✓ |
+| Trải nghiệm trang (Core Web Vitals) | ~10% | Xem [Core Web Vitals](../core-web-vitals/SKILL.md) |
+| SEO trên trang (On-page SEO) | ~10% | ✓ |
 
 ---
 
-## Technical SEO
+## SEO kỹ thuật (Technical SEO)
 
-### Crawlability
+### Khả năng thu thập dữ liệu (Crawlability)
 
 **robots.txt:**
 ```text
@@ -35,46 +35,46 @@ Search ranking factors (approximate influence):
 User-agent: *
 Allow: /
 
-# Block admin/private areas
+# Chặn các khu vực quản trị/riêng tư
 Disallow: /admin/
 Disallow: /api/
 Disallow: /private/
 
-# Don't block resources needed for rendering
+# Không chặn các tài nguyên cần thiết cho việc hiển thị (rendering)
 # ❌ Disallow: /static/
 
 Sitemap: https://example.com/sitemap.xml
 ```
 
-**Meta robots:**
+**Thẻ Meta robots:**
 ```html
-<!-- Default: indexable, followable -->
+<!-- Mặc định: có thể lập chỉ mục, có thể theo dõi liên kết -->
 <meta name="robots" content="index, follow">
 
-<!-- Noindex specific pages -->
+<!-- Không lập chỉ mục cho các trang cụ thể -->
 <meta name="robots" content="noindex, nofollow">
 
-<!-- Indexable but don't follow links -->
+<!-- Có thể lập chỉ mục nhưng không theo dõi liên kết -->
 <meta name="robots" content="index, nofollow">
 
-<!-- Control snippets -->
+<!-- Kiểm soát trích dẫn (snippets) -->
 <meta name="robots" content="max-snippet:150, max-image-preview:large">
 ```
 
-**Canonical URLs:**
+**URL chính tắc (Canonical URLs):**
 ```html
-<!-- Prevent duplicate content issues -->
+<!-- Ngăn chặn các vấn đề nội dung trùng lặp -->
 <link rel="canonical" href="https://example.com/page">
 
-<!-- Self-referencing canonical (recommended) -->
+<!-- Tự tham chiếu canonical (khuyên dùng) -->
 <link rel="canonical" href="https://example.com/current-page">
 
-<!-- For paginated content -->
+<!-- Đối với nội dung được phân trang -->
 <link rel="canonical" href="https://example.com/products">
-<!-- Or use rel="prev" / rel="next" for explicit pagination -->
+<!-- Hoặc sử dụng rel="prev" / rel="next" cho việc phân trang rõ ràng -->
 ```
 
-### XML sitemap
+### Sơ đồ trang web XML (XML sitemap)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -94,44 +94,44 @@ Sitemap: https://example.com/sitemap.xml
 </urlset>
 ```
 
-**Sitemap best practices:**
-- Maximum 50,000 URLs or 50MB per sitemap
-- Use sitemap index for larger sites
-- Include only canonical, indexable URLs
-- Update `lastmod` when content changes
-- Submit to Google Search Console
+**Các thực hành tốt nhất cho Sitemap:**
+- Tối đa 50.000 URL hoặc 50MB cho mỗi sitemap.
+- Sử dụng chỉ mục sitemap (sitemap index) cho các trang web lớn hơn.
+- Chỉ bao gồm các URL chính tắc (canonical) và có thể lập chỉ mục.
+- Cập nhật `lastmod` khi nội dung thay đổi.
+- Gửi lên Google Search Console.
 
-### URL structure
+### Cấu trúc URL (URL structure)
 
 ```
-✅ Good URLs:
+✅ URL tốt:
 https://example.com/products/blue-widget
 https://example.com/blog/how-to-use-widgets
 
-❌ Poor URLs:
+❌ URL kém:
 https://example.com/p?id=12345
 https://example.com/products/item/category/subcategory/blue-widget-2024-sale-discount
 ```
 
-**URL guidelines:**
-- Use hyphens, not underscores
-- Lowercase only
-- Keep short (< 75 characters)
-- Include target keywords naturally
-- Avoid parameters when possible
-- Use HTTPS always
+**Hướng dẫn về URL:**
+- Sử dụng dấu gạch nối (hyphens), không dùng dấu gạch dưới (underscores).
+- Chỉ sử dụng chữ thường.
+- Giữ ngắn gọn (< 75 ký tự).
+- Bao gồm các từ khóa mục tiêu một cách tự nhiên.
+- Tránh các tham số (parameters) khi có thể.
+- Luôn sử dụng HTTPS.
 
-### HTTPS & security
+### HTTPS & bảo mật (Security)
 
 ```html
-<!-- Ensure all resources use HTTPS -->
+<!-- Đảm bảo tất cả tài nguyên đều sử dụng HTTPS -->
 <img src="https://example.com/image.jpg">
 
-<!-- Not: -->
+<!-- Tránh: -->
 <img src="http://example.com/image.jpg">
 ```
 
-**Security headers for SEO trust signals:**
+**Các tiêu đề bảo mật để tạo tín hiệu tin cậy cho SEO:**
 ```
 Strict-Transport-Security: max-age=31536000; includeSubDomains
 X-Content-Type-Options: nosniff
@@ -140,118 +140,118 @@ X-Frame-Options: DENY
 
 ---
 
-## On-page SEO
+## SEO trên trang (On-page SEO)
 
-### Title tags
+### Thẻ tiêu đề (Title tags)
 
 ```html
-<!-- ❌ Missing or generic -->
+<!-- ❌ Thiếu hoặc quá chung chung -->
 <title>Page</title>
 <title>Home</title>
 
-<!-- ✅ Descriptive with primary keyword -->
-<title>Blue Widgets for Sale | Premium Quality | Example Store</title>
+<!-- ✅ Mô tả rõ ràng với từ khóa chính -->
+<title>Blue Widgets for Sale | Chất lượng Cao cấp | Cửa hàng Ví dụ</title>
 ```
 
-**Title tag guidelines:**
-- 50-60 characters (Google truncates ~60)
-- Primary keyword near the beginning
-- Unique for every page
-- Brand name at end (unless homepage)
-- Action-oriented when appropriate
+**Hướng dẫn về thẻ tiêu đề:**
+- 50-60 ký tự (Google sẽ cắt ngắn nếu ~60 ký tự).
+- Từ khóa chính nằm ở phía đầu tiêu đề.
+- Duy nhất cho mỗi trang.
+- Tên thương hiệu ở cuối (trừ trang chủ).
+- Hướng hành động khi phù hợp.
 
-### Meta descriptions
+### Thẻ mô tả (Meta descriptions)
 
 ```html
-<!-- ❌ Missing or duplicate -->
+<!-- ❌ Thiếu hoặc bị trùng lặp -->
 <meta name="description" content="">
 
-<!-- ✅ Compelling and unique -->
-<meta name="description" content="Shop premium blue widgets with free shipping. 30-day returns. Rated 4.9/5 by 10,000+ customers. Order today and save 20%.">
+<!-- ✅ Hấp dẫn và duy nhất -->
+<meta name="description" content="Mua sắm các widget màu xanh cao cấp với chính sách giao hàng miễn phí. Đổi trả trong 30 ngày. Được đánh giá 4.9/5 bởi 10.000+ khách hàng. Đặt hàng ngay hôm nay để tiết kiệm 20%.">
 ```
 
-**Meta description guidelines:**
-- 150-160 characters
-- Include primary keyword naturally
-- Compelling call-to-action
-- Unique for every page
-- Matches page content
+**Hướng dẫn về thẻ mô tả:**
+- 150-160 ký tự.
+- Bao gồm từ khóa chính một cách tự nhiên.
+- Kêu gọi hành động hấp dẫn (compelling call-to-action).
+- Duy nhất cho mỗi trang.
+- Phù hợp với nội dung trang.
 
-### Heading structure
+### Cấu trúc tiêu đề (Heading structure)
 
 ```html
-<!-- ❌ Poor structure -->
-<h2>Welcome to Our Store</h2>
-<h4>Products</h4>
-<h1>Contact Us</h1>
+<!-- ❌ Cấu trúc kém -->
+<h2>Chào mừng đến với Cửa hàng</h2>
+<h4>Sản phẩm</h4>
+<h1>Liên hệ với Chúng tôi</h1>
 
-<!-- ✅ Proper hierarchy -->
-<h1>Blue Widgets - Premium Quality</h1>
-  <h2>Product Features</h2>
-    <h3>Durability</h3>
-    <h3>Design</h3>
-  <h2>Customer Reviews</h2>
-  <h2>Pricing</h2>
+<!-- ✅ Cấu trúc phân cấp đúng -->
+<h1>Blue Widgets - Chất lượng Cao cấp</h1>
+  <h2>Tính năng Sản phẩm</h2>
+    <h3>Độ bền</h3>
+    <h3>Thiết kế</h3>
+  <h2>Đánh giá từ Khách hàng</h2>
+  <h2>Báo giá</h2>
 ```
 
-**Heading guidelines:**
-- Single `<h1>` per page (the main topic)
-- Logical hierarchy (don't skip levels)
-- Include keywords naturally
-- Descriptive, not generic
+**Hướng dẫn về tiêu đề:**
+- Một thẻ `<h1>` duy nhất cho mỗi trang (chủ đề chính).
+- Phân cấp logic (đừng bỏ qua các cấp bậc).
+- Bao gồm từ khóa một cách tự nhiên.
+- Mang tính mô tả, không chung chung.
 
-### Image SEO
+### SEO Hình ảnh (Image SEO)
 
 ```html
-<!-- ❌ Poor image SEO -->
+<!-- ❌ SEO hình ảnh kém -->
 <img src="IMG_12345.jpg">
 
-<!-- ✅ Optimized image -->
+<!-- ✅ Hình ảnh được tối ưu hóa -->
 <img src="blue-widget-product-photo.webp"
-     alt="Blue widget with chrome finish, side view showing control panel"
+     alt="Widget màu xanh với lớp hoàn thiện bằng chrome, góc nhìn nghiêng hiển thị bảng điều khiển"
      width="800"
      height="600"
      loading="lazy">
 ```
 
-**Image guidelines:**
-- Descriptive filenames with keywords
-- Alt text describes the image content
-- Compressed and properly sized
-- WebP/AVIF with fallbacks
-- Lazy load below-fold images
+**Hướng dẫn về hình ảnh:**
+- Tên file mô tả rõ ràng với các từ khóa.
+- Văn bản thay thế (alt text) mô tả nội dung hình ảnh.
+- Được nén và có kích thước phù hợp.
+- Sử dụng định dạng WebP/AVIF với các phương án dự phòng.
+- Sử dụng Lazy load cho các hình ảnh nằm ngoài vùng nhìn thấy ban đầu (below-fold).
 
-### Internal linking
+### Liên kết nội bộ (Internal linking)
 
 ```html
-<!-- ❌ Non-descriptive -->
-<a href="/products">Click here</a>
-<a href="/widgets">Read more</a>
+<!-- ❌ Không mang tính mô tả -->
+<a href="/products">Bấm vào đây</a>
+<a href="/widgets">Đọc thêm</a>
 
-<!-- ✅ Descriptive anchor text -->
-<a href="/products/blue-widgets">Browse our blue widget collection</a>
-<a href="/guides/widget-maintenance">Learn how to maintain your widgets</a>
+<!-- ✅ Văn bản liên kết (anchor text) mô tả rõ ràng -->
+<a href="/products/blue-widgets">Khám phá bộ sưu tập widget màu xanh của chúng tôi</a>
+<a href="/guides/widget-maintenance">Tìm hiểu cách bảo trì các widget của bạn</a>
 ```
 
-**Linking guidelines:**
-- Descriptive anchor text with keywords
-- Link to relevant internal pages
-- Reasonable number of links per page
-- Fix broken links promptly
-- Use breadcrumbs for hierarchy
+**Hướng dẫn về liên kết:**
+- Văn bản liên kết mô tả rõ ràng với các từ khóa.
+- Liên kết đến các trang nội bộ có liên quan.
+- Số lượng liên kết hợp lý cho mỗi trang.
+- Sửa các liên kết bị hỏng kịp thời.
+- Sử dụng Breadcrumbs để phân cấp.
 
 ---
 
-## Structured data (JSON-LD)
+## Dữ liệu có cấu trúc (Structured data - JSON-LD)
 
-### Organization
+### Tổ chức (Organization)
 
 ```html
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Example Company",
+  "name": "Cửa hàng Ví dụ",
   "url": "https://example.com",
   "logo": "https://example.com/logo.png",
   "sameAs": [
@@ -261,21 +261,21 @@ X-Frame-Options: DENY
   "contactPoint": {
     "@type": "ContactPoint",
     "telephone": "+1-555-123-4567",
-    "contactType": "customer service"
+    "contactType": "dịch vụ khách hàng"
   }
 }
 </script>
 ```
 
-### Article
+### Bài viết (Article)
 
 ```html
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "How to Choose the Right Widget",
-  "description": "Complete guide to selecting widgets for your needs.",
+  "headline": "Cách chọn Widget Phù hợp",
+  "description": "Hướng dẫn đầy đủ về việc chọn widget cho nhu cầu của bạn.",
   "image": "https://example.com/article-image.jpg",
   "author": {
     "@type": "Person",
@@ -284,7 +284,7 @@ X-Frame-Options: DENY
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Example Blog",
+    "name": "Blog Ví dụ",
     "logo": {
       "@type": "ImageObject",
       "url": "https://example.com/logo.png"
@@ -296,7 +296,7 @@ X-Frame-Options: DENY
 </script>
 ```
 
-### Product
+### Sản phẩm (Product)
 
 ```html
 <script type="application/ld+json">
@@ -305,7 +305,7 @@ X-Frame-Options: DENY
   "@type": "Product",
   "name": "Blue Widget Pro",
   "image": "https://example.com/blue-widget.jpg",
-  "description": "Premium blue widget with advanced features.",
+  "description": "Widget màu xanh cao cấp với các tính năng tiên tiến.",
   "brand": {
     "@type": "Brand",
     "name": "WidgetCo"
@@ -326,7 +326,7 @@ X-Frame-Options: DENY
 </script>
 ```
 
-### FAQ
+### FAQ (Câu hỏi thường gặp)
 
 ```html
 <script type="application/ld+json">
@@ -336,18 +336,18 @@ X-Frame-Options: DENY
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What colors are available?",
+      "name": "Có những màu sắc nào?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Our widgets come in blue, red, and green."
+        "text": "Các widget của chúng tôi có màu xanh, đỏ và xanh lá cây."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the warranty?",
+      "name": "Chính sách bảo hành như thế nào?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "All widgets include a 2-year warranty."
+        "text": "Tất cả các widget đều được bảo hành 2 năm."
       }
     }
   ]
@@ -355,7 +355,7 @@ X-Frame-Options: DENY
 </script>
 ```
 
-### Breadcrumbs
+### Breadcrumbs (Thanh điều hướng)
 
 ```html
 <script type="application/ld+json">
@@ -366,13 +366,13 @@ X-Frame-Options: DENY
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Home",
+      "name": "Trang chủ",
       "item": "https://example.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Products",
+      "name": "Sản phẩm",
       "item": "https://example.com/products"
     },
     {
@@ -386,36 +386,36 @@ X-Frame-Options: DENY
 </script>
 ```
 
-### Validation
+### Xác thực (Validation)
 
-Test structured data at:
+Kiểm tra dữ liệu có cấu trúc tại:
 - [Google Rich Results Test](https://search.google.com/test/rich-results)
 - [Schema.org Validator](https://validator.schema.org/)
 
 ---
 
-## Mobile SEO
+## SEO cho Di động (Mobile SEO)
 
-### Responsive design
+### Thiết kế đáp ứng (Responsive design)
 
 ```html
-<!-- ❌ Not mobile-friendly -->
+<!-- ❌ Không thân thiện với di động -->
 <meta name="viewport" content="width=1024">
 
-<!-- ✅ Responsive viewport -->
+<!-- ✅ Viewport đáp ứng -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 ```
 
-### Tap targets
+### Mục tiêu chạm (Tap targets)
 
 ```css
-/* ❌ Too small for mobile */
+/* ❌ Quá nhỏ cho di động */
 .small-link {
   padding: 4px;
   font-size: 12px;
 }
 
-/* ✅ Adequate tap target */
+/* ✅ Có không gian chạm đầy đủ */
 .mobile-friendly-link {
   padding: 12px;
   font-size: 16px;
@@ -424,15 +424,15 @@ Test structured data at:
 }
 ```
 
-### Font sizes
+### Kích thước Font (Font sizes)
 
 ```css
-/* ❌ Too small on mobile */
+/* ❌ Quá nhỏ trên di động */
 body {
   font-size: 10px;
 }
 
-/* ✅ Readable without zooming */
+/* ✅ Dễ đọc mà không cần thu phóng */
 body {
   font-size: 16px;
   line-height: 1.5;
@@ -441,71 +441,71 @@ body {
 
 ---
 
-## International SEO
+## SEO Quốc tế (International SEO)
 
-### Hreflang tags
+### Thẻ Hreflang
 
 ```html
-<!-- For multi-language sites -->
+<!-- Đối với các trang đa ngôn ngữ -->
 <link rel="alternate" hreflang="en" href="https://example.com/page">
 <link rel="alternate" hreflang="es" href="https://example.com/es/page">
 <link rel="alternate" hreflang="fr" href="https://example.com/fr/page">
 <link rel="alternate" hreflang="x-default" href="https://example.com/page">
 ```
 
-### Language declaration
+### Khai báo ngôn ngữ (Language declaration)
 
 ```html
-<html lang="en">
-<!-- or -->
-<html lang="es-MX">
+<html lang="vi">
+<!-- hoặc -->
+<html lang="en-US">
 ```
 
 ---
 
-## SEO audit checklist
+## Danh sách kiểm tra SEO audit (SEO audit checklist)
 
-### Critical
-- [ ] HTTPS enabled
-- [ ] robots.txt allows crawling
-- [ ] No `noindex` on important pages
-- [ ] Title tags present and unique
-- [ ] Single `<h1>` per page
+### Quan trọng (Critical)
+- [ ] Bật HTTPS.
+- [ ] robots.txt cho phép thu thập dữ liệu.
+- [ ] Không có thẻ `noindex` trên các trang quan trọng.
+- [ ] Thẻ tiêu đề hiện tại và duy nhất.
+- [ ] Một thẻ `<h1>` duy nhất mỗi trang.
 
-### High priority
-- [ ] Meta descriptions present
-- [ ] Sitemap submitted
-- [ ] Canonical URLs set
-- [ ] Mobile-responsive
-- [ ] Core Web Vitals passing
+### Ưu tiên cao (High priority)
+- [ ] Có thẻ mô tả meta.
+- [ ] Sitemap đã được gửi đi.
+- [ ] Đã đặt URL chính tắc (canonical).
+- [ ] Giao diện đáp ứng di động.
+- [ ] Vượt qua các chỉ số Core Web Vitals.
 
-### Medium priority
-- [ ] Structured data implemented
-- [ ] Internal linking strategy
-- [ ] Image alt text
-- [ ] Descriptive URLs
-- [ ] Breadcrumb navigation
+### Ưu tiên trung bình (Medium priority)
+- [ ] Đã triển khai dữ liệu có cấu trúc.
+- [ ] Chiến lược liên kết nội bộ.
+- [ ] Văn bản thay thế (alt text) cho hình ảnh.
+- [ ] URL mang tính mô tả rõ ràng.
+- [ ] Thanh điều hướng (breadcrumb).
 
-### Ongoing
-- [ ] Fix crawl errors in Search Console
-- [ ] Update sitemap when content changes
-- [ ] Monitor ranking changes
-- [ ] Check for broken links
-- [ ] Review Search Console insights
+### Duy trì hằng ngày (Ongoing)
+- [ ] Sửa các lỗi thu thập dữ liệu trong Search Console.
+- [ ] Cập nhật sitemap khi nội dung thay đổi.
+- [ ] Theo dõi các thay đổi về thứ hạng.
+- [ ] Kiểm tra lỗi liên kết bị hỏng (broken links).
+- [ ] Xem xét các thông tin chuyên sâu (insights) từ Search Console.
 
 ---
 
-## Tools
+## Công cụ (Tools)
 
-| Tool | Use |
+| Công cụ | Sử dụng |
 |------|-----|
-| Google Search Console | Monitor indexing, fix issues |
-| Google PageSpeed Insights | Performance + Core Web Vitals |
-| Rich Results Test | Validate structured data |
-| Lighthouse | Full SEO audit |
-| Screaming Frog | Crawl analysis |
+| Google Search Console | Theo dõi lập chỉ mục, sửa lỗi |
+| Google PageSpeed Insights | Hiệu suất + Core Web Vitals |
+| Rich Results Test | Xác thực dữ liệu có cấu trúc |
+| Lighthouse | Kiểm tra SEO đầy đủ |
+| Screaming Frog | Phân tích thu thập dữ liệu (crawl analysis) |
 
-## References
+## Tham khảo (References)
 
 - [Google Search Central](https://developers.google.com/search)
 - [Schema.org](https://schema.org/)

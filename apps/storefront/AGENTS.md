@@ -5,7 +5,7 @@
 ## 1. Thông số Kỹ thuật
 - **Framework:** Next.js (App Router).
 - **CSS:** Tailwind CSS v4 (Cấu hình trực tiếp trong CSS file).
-- **Package Manager:** `yarn`.
+- **Package Manager:** `pnpm`.
 
 ## 2. Chỉ dẫn cho Agent
 - **Next.js:** Ưu tiên Server Components.

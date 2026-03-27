@@ -1,44 +1,44 @@
-# Responsive Design
+# Thiết kế Đáp ứng (Responsive Design)
 
-## Mobile-First: Write It Right
+## Ưu tiên Di động (Mobile-First): Hãy làm đúng cách
 
-Start with base styles for mobile, use `min-width` queries to layer complexity. Desktop-first (`max-width`) means mobile loads unnecessary styles first.
+Hãy bắt đầu với các kiểu dáng cơ bản cho di động, sau đó sử dụng các truy vấn `min-width` (min-width queries) để thêm các lớp phức tạp dần lên. Việc ưu tiên máy tính để bàn (desktop-first với `max-width`) nghĩa là thiết bị di động sẽ phải tải các kiểu dáng không cần thiết trước.
 
-## Breakpoints: Content-Driven
+## Các điểm ngắt (Breakpoints): Dựa trên Nội dung
 
-Don't chase device sizes—let content tell you where to break. Start narrow, stretch until design breaks, add breakpoint there. Three breakpoints usually suffice (640, 768, 1024px). Use `clamp()` for fluid values without breakpoints.
+Đừng chạy theo kích thước của các thiết bị—hãy để nội dung cho bạn biết nơi nào cần ngắt. Hãy bắt đầu từ chiều rộng hẹp, kéo giãn cho đến khi thiết kế bị vỡ, và thêm điểm ngắt ở đó. Ba điểm ngắt thường là đủ (640, 768, 1024px). Hãy sử dụng hàm `clamp()` cho các giá trị linh hoạt mà không cần điểm ngắt.
 
-## Detect Input Method, Not Just Screen Size
+## Phát hiện Phương thức Nhập liệu, không chỉ Kích thước Màn hình
 
-**Screen size doesn't tell you input method.** A laptop with touchscreen, a tablet with keyboard—use pointer and hover queries:
+**Kích thước màn hình không cho bạn biết phương thức nhập liệu.** Một chiếc máy tính xách tay có màn hình cảm ứng, một chiếc máy tính bảng có bàn phím—hãy sử dụng các truy vấn con trỏ (pointer) và hover:
 
 ```css
-/* Fine pointer (mouse, trackpad) */
+/* Con trỏ chính xác (chuột, trackpad) */
 @media (pointer: fine) {
   .button { padding: 8px 16px; }
 }
 
-/* Coarse pointer (touch, stylus) */
+/* Con trỏ thô (cảm ứng, bút stylus) */
 @media (pointer: coarse) {
-  .button { padding: 12px 20px; }  /* Larger touch target */
+  .button { padding: 12px 20px; }  /* Mục tiêu chạm lớn hơn */
 }
 
-/* Device supports hover */
+/* Thiết bị hỗ trợ hover */
 @media (hover: hover) {
   .card:hover { transform: translateY(-2px); }
 }
 
-/* Device doesn't support hover (touch) */
+/* Thiết bị không hỗ trợ hover (cảm ứng) */
 @media (hover: none) {
-  .card { /* No hover state - use active instead */ }
+  .card { /* Không có trạng thái hover - hãy sử dụng active thay thế */ }
 }
 ```
 
-**Critical**: Don't rely on hover for functionality. Touch users can't hover.
+**Quan trọng**: Đừng dựa vào hover cho các chức năng thiết yếu. Người dùng cảm ứng không thể thực hiện thao tác hover.
 
-## Safe Areas: Handle the Notch
+## Các vùng An toàn (Safe Areas): Xử lý phần "Tai thỏ" (Notch)
 
-Modern phones have notches, rounded corners, and home indicators. Use `env()`:
+Các điện thoại hiện đại có phần tai thỏ, các góc bo tròn và các thanh chỉ báo trang chủ. Hãy sử dụng hàm `env()`:
 
 ```css
 body {
@@ -48,20 +48,20 @@ body {
   padding-right: env(safe-area-inset-right);
 }
 
-/* With fallback */
+/* Có phương án dự phòng (fallback) */
 .footer {
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 ```
 
-**Enable viewport-fit** in your meta tag:
+**Kích hoạt viewport-fit** trong thẻ meta của bạn:
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 ```
 
-## Responsive Images: Get It Right
+## Hình ảnh Đáp ứng (Responsive Images): Hãy làm đúng
 
-### srcset with Width Descriptors
+### srcset với Chỉ thị Chiều rộng (Width Descriptors)
 
 ```html
 <img
@@ -72,18 +72,18 @@ body {
     hero-1200.jpg 1200w
   "
   sizes="(max-width: 768px) 100vw, 50vw"
-  alt="Hero image"
+  alt="Ảnh chính (Hero image)"
 >
 ```
 
-**How it works**:
-- `srcset` lists available images with their actual widths (`w` descriptors)
-- `sizes` tells the browser how wide the image will display
-- Browser picks the best file based on viewport width AND device pixel ratio
+**Cơ chế hoạt động**:
+- `srcset` liệt kê các hình ảnh có sẵn với chiều rộng thực tế của chúng (chỉ thị `w`).
+- `sizes` cho trình duyệt biết hình ảnh sẽ hiển thị rộng bao nhiêu.
+- Trình duyệt sẽ chọn tệp tốt nhất dựa trên chiều rộng của khung nhìn (viewport) VÀ tỷ lệ pixel của thiết bị (device pixel ratio).
 
-### Picture Element for Art Direction
+### Phân tử Picture cho Chỉ hướng Nghệ thuật (Art Direction)
 
-When you need different crops/compositions (not just resolutions):
+Khi bạn cần các cách cắt cúp hoặc bố cục khác nhau (không chỉ là độ phân giải):
 
 ```html
 <picture>
@@ -93,22 +93,22 @@ When you need different crops/compositions (not just resolutions):
 </picture>
 ```
 
-## Layout Adaptation Patterns
+## Các Mẫu Thích nghi Bố cục (Layout Adaptation Patterns)
 
-**Navigation**: Three stages—hamburger + drawer on mobile, horizontal compact on tablet, full with labels on desktop. **Tables**: Transform to cards on mobile using `display: block` and `data-label` attributes. **Progressive disclosure**: Use `<details>/<summary>` for content that can collapse on mobile.
+**Điều hướng (Navigation)**: Ba giai đoạn—menu hamburger + ngăn kéo (drawer) trên di động, hiển thị ngang thu gọn trên máy tính bảng, và đầy đủ với các nhãn trên máy tính để bàn. **Bảng (Tables)**: Chuyển đổi thành dạng thẻ (cards) trên di động bằng cách sử dụng `display: block` và các thuộc tính `data-label`. **Tiết lộ dần dần (Progressive disclosure)**: Sử dụng `<details>/<summary>` cho các nội dung có thể thu gọn trên di động.
 
-## Testing: Don't Trust DevTools Alone
+## Kiểm tra: Đừng chỉ tin vào DevTools
 
-DevTools device emulation is useful for layout but misses:
+Việc mô phỏng thiết bị trên DevTools rất hữu ích cho bố cục nhưng sẽ bỏ qua:
 
-- Actual touch interactions
-- Real CPU/memory constraints
-- Network latency patterns
-- Font rendering differences
-- Browser chrome/keyboard appearances
+- Các tương tác chạm thực tế.
+- Các giới hạn thực tế về CPU/bộ nhớ.
+- Các mẫu trễ mạng (network latency).
+- Sự khác biệt về hiển thị font chữ.
+- Sự xuất hiện của giao diện trình duyệt/bàn phím.
 
-**Test on at least**: One real iPhone, one real Android, a tablet if relevant. Cheap Android phones reveal performance issues you'll never see on simulators.
+**Hãy kiểm tra trên ít nhất**: Một chiếc iPhone thật, một chiếc Android thật, và một chiếc máy tính bảng nếu cần thiết. Các điện thoại Android giá rẻ sẽ tiết lộ các vấn đề về hiệu suất mà bạn không bao giờ thấy trên các trình giả lập.
 
 ---
 
-**Avoid**: Desktop-first design. Device detection instead of feature detection. Separate mobile/desktop codebases. Ignoring tablet and landscape. Assuming all mobile devices are powerful.
+**Tránh**: Thiết kế ưu tiên máy tính để bàn (desktop-first). Phát hiện thiết bị (device detection) thay vì phát hiện tính năng (feature detection). Tách biệt mã nguồn cho di động và máy tính để bàn. Bỏ qua máy tính bảng và chế độ xoay ngang. Giả định rằng mọi thiết bị di động đều mạnh mẽ.

@@ -1,20 +1,21 @@
-# Rule: Document Service API & Identifiers
+# Quy tắc: Document Service API & Identifiers (Định danh)
 
-1. УСТАРЕВШИЙ API: Строго запрещено использовать `strapi.entityService`. Он объявлен устаревшим в Strapi 5.
-2. НОВЫЙ API: Всегда используй `strapi.documents('api::uid.uid').methodName()`.
-3. ИДЕНТИФИКАТОРЫ: В Strapi 5 основным идентификатором является `documentId` (строка из 24 символов). Обычный `id` (число) использовать для запросов НЕЛЬЗЯ.
+1. API LỖI THỜI: Nghiêm cấm sử dụng `strapi.entityService`. Nó đã bị coi là lỗi thời trong Strapi 5.
+2. API MỚI: Luôn sử dụng `strapi.documents('api::uid.uid').methodName()`.
+3. ĐỊNH DANH (IDENTIFIERS): Trong Strapi 5, định danh chính là `documentId` (chuỗi 24 ký tự). KHÔNG ĐƯỢC phép sử dụng `id` thông thường (dạng số) cho các truy vấn.
 
-**Правильный синтаксис (Strapi 5):**
+**Cú pháp đúng (Strapi 5):**
 ```typescript
-// ПОИСК ОДНОЙ ЗАПИСИ
+// TÌM KIẾM MỘT BẢN GHI
 const entry = await strapi.documents('api::article.article').findOne({
   documentId: 'abc123def456ghi789jkl012',
-  populate: ['author', 'coverImage'], // Связи нужно популейтить явно
-  status: 'published', // 'draft' по умолчанию, если включен Draft & Publish
+  populate: ['author', 'coverImage'], // Các liên kết cần phải populate rõ ràng
+  status: 'published', // Mặc định là 'draft' nếu bật Draft & Publish
 });
 
-// ОБНОВЛЕНИЕ
+// CẬP NHẬT
 const updated = await strapi.documents('api::article.article').update({
   documentId: 'abc123def456ghi789jkl012',
-  data: { title: 'New Title' },
+  data: { title: 'Tiêu đề mới' },
 });
+```

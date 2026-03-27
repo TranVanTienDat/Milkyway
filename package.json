@@ -1,0 +1,15 @@
+{
+  "name": "milkyway",
+  "private": true,
+  "scripts": {
+    "dev:storefront": "pnpm --filter storefront dev",
+    "dev:cms": "pnpm --filter cms dev",
+    "build:storefront": "pnpm --filter storefront build",
+    "build:cms": "pnpm --filter cms build",
+    "dev": "pnpm -r --parallel dev"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "pnpm@10.22.0"
+}
