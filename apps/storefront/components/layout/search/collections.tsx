@@ -1,12 +1,11 @@
 import clsx from "clsx";
 import { Suspense } from "react";
 
-import { getCollections } from "lib/shopify";
 import FilterList from "./filter";
 
 async function CollectionList() {
-  const collections = await getCollections();
-  return <FilterList list={collections} title="Collections" />;
+  // const collections = await getCollections();
+  return <FilterList list={[]} title="Collections" />;
 }
 
 const skeleton = "mb-3 h-4 w-5/6 animate-pulse rounded-sm";

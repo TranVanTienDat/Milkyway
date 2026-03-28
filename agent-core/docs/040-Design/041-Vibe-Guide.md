@@ -18,7 +18,12 @@
 
 ---
 
-## 2. Chiến lược Tailwind CSS v4
+## 2. Chiến lược UI Components & Tailwind CSS v4
+
+### 🧩 shadcn/ui (Cốt lõi Giao diện)
+- Sử dụng ecosystem **shadcn/ui** làm nền tảng Component cốt lõi (Core UI primitives) để xây dựng hệ thống lệnh (Button, Form, Modal, Popover, Slider, v.v.) đảm bảo sự thống nhất và tối ưu trải nghiệm Accessibility (tiêu chuẩn Radix UI).
+- Không tự code tay (hardcode) lại các state nền tảng (như keyboard nav, focus management) nếu shadcn/ui đã cung cấp. Ưu tiên cài đặt: `pnpm dlx shadcn@latest add [component-name]`.
+- Cấu trúc thư mục Component của Shadcn sẽ nằm chung tại `apps/storefront/components/ui/`.
 
 ### 🎭 Glassmorphism & Effects
 Tailwind v4 cho phép cấu hình hiệu ứng trực tiếp. Chúng ta ưu tiên:

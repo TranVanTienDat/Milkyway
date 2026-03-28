@@ -1,10 +1,13 @@
-import { Carousel } from "components/carousel";
-import { ThreeItemGrid } from "components/grid/three-items";
-import Footer from "components/layout/footer";
+import HeroBanner from '../components/hero-banner';
+import USPIndicators from '../components/usp-indicators';
+import FeaturedProducts from '../components/featured-products';
+import AIAdvisor from '../components/ai-advisor';
+import Testimonials from '../components/testimonials';
+import PressLogos from '../components/press-logos';
 
 export const metadata = {
-  description:
-    "High-performance ecommerce store built with Next.js, Vercel, and Shopify.",
+  description: "Glow & Pure - Bí quyết chăm sóc da thuần chay, an toàn và thiên nhiên",
+  title: "Glow & Pure | Skincare from Nature & Science",
   openGraph: {
     type: "website",
   },
@@ -12,10 +15,13 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <>
-      <ThreeItemGrid />
-      <Carousel />
-      <Footer />
-    </>
+    <main className="flex flex-col min-h-screen">
+      <HeroBanner />
+      <USPIndicators />
+      <FeaturedProducts />
+      <AIAdvisor />
+      <Testimonials />
+      <PressLogos />
+    </main>
   );
 }

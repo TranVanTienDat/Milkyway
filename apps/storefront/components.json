@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "base-nova",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "rtl": false,
+  "aliases": {
+    "components": "@milkyway/gql-mesh/components",
+    "utils": "@milkyway/gql-mesh/lib/utils",
+    "ui": "@milkyway/gql-mesh/components/ui",
+    "lib": "@milkyway/gql-mesh/lib",
+    "hooks": "@milkyway/gql-mesh/hooks"
+  },
+  "menuColor": "default",
+  "menuAccent": "subtle",
+  "registries": {}
+}
