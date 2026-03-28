@@ -16,6 +16,9 @@
     "jsx": "react-jsx",
     "incremental": true,
     "baseUrl": ".",
+    "paths": {
+      "@milkyway/gql-mesh": ["../../packages/gql-mesh/src/index.ts"]
+    },
     "noUncheckedIndexedAccess": true,
     "plugins": [
       {

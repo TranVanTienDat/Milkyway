@@ -1,0 +1,20 @@
+sources:
+  - name: CMS
+    handler:
+      graphql:
+        endpoint: http://localhost:1337/graphql
+    transforms:
+      - prefix:
+          value: cms_
+          includeRootOperations: true
+
+transforms:
+  - cache:
+      - field: cms_products
+        cacheKey: cms_products
+        invalidate:
+          ttl: 300 # 5 minutes
+
+cache:
+  inmemory-lru:
+    max: 100
