@@ -7,7 +7,24 @@ export default {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {},
+  register({ strapi }) {
+    const extensionService = strapi.plugin("graphql").service("extension");
+
+    const allowedModels = [
+      "api::banner.banner",
+      "plugin::users-permissions.user",
+      "plugin::users-permissions.auth",
+    ];
+
+    const allModels = Object.keys(strapi.contentTypes);
+
+    allModels.forEach((modelUID) => {
+      if (!allowedModels.includes(modelUID)) {
+        extensionService.shadowCRUD(modelUID).disableQueries();
+        extensionService.shadowCRUD(modelUID).disableMutations();
+      }
+    });
+  },
 
   /**
    * An asynchronous bootstrap function that runs before
