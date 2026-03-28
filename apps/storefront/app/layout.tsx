@@ -5,7 +5,7 @@ import { Inter, Plus_Jakarta_Sans, Geist } from "next/font/google"; // [ADDED]
 import { ReactNode } from "react"; // [ADDED Suspense]
 import { Toaster } from "sonner";
 import "./globals.css";
-import { cn } from "@milkyway/gql-mesh/lib/utils";
+import { cn } from "@/lib/utils";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 

@@ -1,51 +1,52 @@
-'use client';
+"use client";
 
-import { useCallback } from 'react';
-import Link from 'next/link';
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import { useCallback } from "react";
+import Link from "next/link";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { Button } from "@/components/ui/button";
 
 // Mock product data as per task 3.3
 const featuredProducts = [
   {
-    id: '1',
-    name: 'SERUM DƯỠNG TRẮNG C-GLOW',
-    price: '790.000₫',
-    image: 'https://placehold.co/400x500/E5E2E1/2C362B?text=Serum+C-Glow',
-    handle: 'serum-duong-trang-c-glow',
+    id: "1",
+    name: "SERUM DƯỠNG TRẮNG C-GLOW",
+    price: "790.000₫",
+    image: "/example/product-1-serum.png",
+    handle: "serum-duong-trang-c-glow",
   },
   {
-    id: '2',
-    name: 'DẦU TẨY TRANG BOTANICAL',
-    price: '420.000₫',
-    image: 'https://placehold.co/400x500/E5E2E1/2C362B?text=Botanical+Oil',
-    handle: 'dau-tay-trang-botanical',
+    id: "2",
+    name: "DẦU TẨY TRANG BOTANICAL",
+    price: "420.000₫",
+    image: "/example/product-2-facial-oil.png",
+    handle: "dau-tay-trang-botanical",
   },
   {
-    id: '3',
-    name: 'MẶT NẠ ĐẤT SÉT TRẮNG',
-    price: '280.000₫',
-    image: 'https://placehold.co/400x500/E5E2E1/2C362B?text=Clay+Mask',
-    handle: 'mat-na-dat-set',
+    id: "3",
+    name: "MẶT NẠ ĐẤT SÉT TRẮNG",
+    price: "280.000₫",
+    image: "/example/product-3-mask.png",
+    handle: "mat-na-dat-set",
   },
   {
-    id: '4',
-    name: 'KEM DƯỠNG AHA AQUAPURE',
-    price: '620.000₫',
-    image: 'https://placehold.co/400x500/E5E2E1/2C362B?text=AHA+AquaPure',
-    handle: 'kem-duong-aha',
+    id: "4",
+    name: "KEM DƯỠNG AHA AQUAPURE",
+    price: "620.000₫",
+    image: "/example/product-4-cream.png",
+    handle: "kem-duong-aha",
   },
 ];
 
-function ProductCard({ product }: { product: typeof featuredProducts[0] }) {
+function ProductCard({ product }: { product: (typeof featuredProducts)[0] }) {
   return (
     <div className="group flex flex-col cursor-pointer mt-4">
       <div className="relative aspect-[4/5] overflow-hidden bg-[#F6F3F2] mb-6 shadow-sm">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img 
-          src={product.image} 
-          alt={product.name} 
+        <img
+          src={product.image}
+          alt={product.name}
           className="object-cover w-full h-full transition-transform duration-700 ease-in-out group-hover:scale-105 pointer-events-none"
         />
         <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -63,11 +64,17 @@ function ProductCard({ product }: { product: typeof featuredProducts[0] }) {
 export default function FeaturedProducts() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
-      align: 'start',
-      containScroll: 'trimSnaps',
-      dragFree: true
+      align: "start",
+      containScroll: "trimSnaps",
+      dragFree: true,
     },
-    [Autoplay({ delay: 3500, stopOnInteraction: true, stopOnMouseEnter: true })]
+    [
+      Autoplay({
+        delay: 3500,
+        stopOnInteraction: true,
+        stopOnMouseEnter: true,
+      }),
+    ],
   );
 
   const scrollPrev = useCallback(() => {
@@ -89,49 +96,57 @@ export default function FeaturedProducts() {
             Sản phẩm Nổi bật
           </h2>
         </div>
-        
+
         <div className="relative group">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex gap-x-4 md:gap-x-8">
               {featuredProducts.map((product) => (
-                <div 
-                  key={product.id} 
+                <div
+                  key={product.id}
                   className="flex-[0_0_80%] sm:flex-[0_0_45%] lg:flex-[0_0_25%] min-w-0"
                 >
                   {/* Embla slider link handler */}
-                  <Link href={`/product/${product.handle}`} className="block select-none" draggable={false}>
+                  <Link
+                    href={`/product/${product.handle}`}
+                    className="block select-none"
+                    draggable={false}
+                  >
                     <ProductCard product={product} />
                   </Link>
                 </div>
               ))}
             </div>
           </div>
-          
+
           {/* Navigation Controls */}
-          <button 
+          <Button
+            variant="outline"
+            size="icon"
             onClick={scrollPrev}
-            className="absolute top-[40%] -left-3 md:-left-5 lg:-left-12 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-md border border-gray-100 rounded-full flex items-center justify-center shadow-lg text-[#121212] hover:bg-[#121212] hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 focus:opacity-100"
+            className="absolute top-[40%] -left-3 md:-left-5 lg:-left-14 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg text-[#121212] hover:bg-[#121212] hover:text-white"
             aria-label="Trước"
           >
             <ChevronLeftIcon className="w-5 h-5 md:w-6 md:h-6" />
-          </button>
-          
-          <button 
+          </Button>
+
+          <Button
+            variant="outline"
+            size="icon"
             onClick={scrollNext}
-            className="absolute top-[40%] -right-3 md:-right-5 lg:-right-12 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-md border border-gray-100 rounded-full flex items-center justify-center shadow-lg text-[#121212] hover:bg-[#121212] hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 focus:opacity-100"
+            className="absolute top-[40%] -right-3 md:-right-5 lg:-right-14 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg text-[#121212] hover:bg-[#121212] hover:text-white "
             aria-label="Tiếp"
           >
             <ChevronRightIcon className="w-5 h-5 md:w-6 md:h-6" />
-          </button>
+          </Button>
         </div>
-        
+
         <div className="mt-16 text-center">
-          <Link 
-            href="/collections/all" 
-            className="inline-block border-b border-[#121212] text-sm uppercase tracking-widest pb-1 hover:text-[var(--color-glow-primary)] hover:border-[var(--color-glow-primary)] transition-colors duration-300"
+          <Button
+            variant="link"
+            className="text-sm uppercase tracking-widest text-[#121212] hover:text-[var(--color-glow-primary)] px-0"
           >
-            Xem tất cả
-          </Link>
+            <Link href="/collections/all">Xem tất cả</Link>
+          </Button>
         </div>
       </div>
     </section>

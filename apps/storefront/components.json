@@ -13,11 +13,11 @@
   "iconLibrary": "lucide",
   "rtl": false,
   "aliases": {
-    "components": "@milkyway/gql-mesh/components",
-    "utils": "@milkyway/gql-mesh/lib/utils",
-    "ui": "@milkyway/gql-mesh/components/ui",
-    "lib": "@milkyway/gql-mesh/lib",
-    "hooks": "@milkyway/gql-mesh/hooks"
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
   },
   "menuColor": "default",
   "menuAccent": "subtle",
