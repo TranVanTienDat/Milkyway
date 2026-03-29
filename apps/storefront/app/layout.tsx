@@ -1,13 +1,14 @@
 import { WelcomeToast } from "components/welcome-toast";
 import { GeistSans } from "geist/font/sans";
 import { baseUrl } from "lib/utils";
-import { Inter, Plus_Jakarta_Sans, Geist } from "next/font/google"; // [ADDED]
-import { ReactNode } from "react"; // [ADDED Suspense]
+import { Inter, Plus_Jakarta_Sans, Geist } from "next/font/google";
+import { ReactNode } from "react";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { ApolloWrapper } from "@/lib/apollo-wrapper";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
@@ -43,14 +44,16 @@ export default async function RootLayout({
   return (
     <html
       lang="vi"
-      className={cn("font-body", "anti-aliased", GeistSans.variable, inter.variable, plusJakartaSans.variable, "font-sans", geist.variable)}
+      className={cn("font-body", "anti-aliased", inter.variable, plusJakartaSans.variable)}
     >
       <body className="flex min-h-screen flex-col bg-surface text-on-surface selection:bg-primary/20">
-        <main className="grow">
-          {children}
-          <Toaster closeButton />
-          <WelcomeToast />
-        </main>
+        <ApolloWrapper>
+          <main className="grow">
+            {children}
+            <Toaster closeButton />
+            <WelcomeToast />
+          </main>
+        </ApolloWrapper>
       </body>
     </html>
   );

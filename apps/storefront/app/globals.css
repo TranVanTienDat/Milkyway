@@ -13,8 +13,13 @@
   --color-glow-secondary: #EBE5E0;
   --color-glow-accent: #2C362B;
 
-  --font-display: "Plus Jakarta Sans", sans-serif;
-  --font-body: "Inter", sans-serif;
+  --font-display: var(--font-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  --font-body: var(--font-inter), "Inter", sans-serif;
+
+  @keyframes scale-in {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
 }
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -40,7 +45,7 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans;
+    @apply font-body;
   }
 }
 
