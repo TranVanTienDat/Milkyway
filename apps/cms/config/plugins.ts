@@ -10,10 +10,10 @@ const config = ({
       playgroundAlways: true,
       depthLimit: 10,
       amountLimit: 100,
-      // introspection: env("NODE_ENV") !== "production",
       introspection: true,
       apolloServer: {
         tracing: false,
+        introspection: true,
       },
       landingPage: (strapi) => {
         if (true) {
