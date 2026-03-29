@@ -10,12 +10,13 @@ const config = ({
       playgroundAlways: true,
       depthLimit: 10,
       amountLimit: 100,
-      introspection: env("NODE_ENV") !== "production",
+      // introspection: env("NODE_ENV") !== "production",
+      introspection: true,
       apolloServer: {
         tracing: false,
       },
       landingPage: (strapi) => {
-        if (env("NODE_ENV") !== "production") {
+        if (true) {
           return true;
         } else {
           return false;
@@ -23,7 +24,21 @@ const config = ({
       },
     },
   },
+  upload: {
+    config: {
+      provider: "cloudinary",
+      providerOptions: {
+        cloud_name: env("CLOUDINARY_NAME"),
+        api_key: env("CLOUDINARY_KEY"),
+        api_secret: env("CLOUDINARY_SECRET"),
+      },
+      actionOptions: {
+        upload: {},
+        uploadStream: {},
+        delete: {},
+      },
+    },
+  },
 });
 
 export default config;
-
