@@ -21,7 +21,7 @@ export default function LoginForm() {
     onCompleted: (data) => {
       if (data?.login) {
         const { jwt } = data.login;
-        localStorage.setItem("authToken", jwt);
+        localStorage.setItem("authToken", jwt || "");
         toast.success("Đăng nhập thành công! Chào mừng Lão đại.");
         router.push("/");
       }

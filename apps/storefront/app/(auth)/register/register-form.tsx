@@ -25,7 +25,7 @@ export default function RegisterForm() {
     onCompleted: (data) => {
       if (data?.register) {
         const { jwt } = data.register;
-        localStorage.setItem("authToken", jwt);
+        localStorage.setItem("authToken", jwt || "");
         toast.success(
           "Đăng ký thành công! Chào mừng Lão đại gia nhập cộng đồng.",
         );

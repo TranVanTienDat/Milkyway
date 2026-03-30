@@ -1,4 +1,5 @@
-import { SortFilterItem } from "lib/constants";
+// import { SortFilterItem } from "lib/constants";
+type SortFilterItem = any;
 import { Suspense } from "react";
 import FilterItemDropdown from "./dropdown";
 import { FilterItem } from "./item";

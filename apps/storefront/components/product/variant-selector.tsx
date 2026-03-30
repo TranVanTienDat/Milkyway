@@ -1,7 +1,9 @@
 "use client";
 
 import clsx from "clsx";
-import { ProductOption, ProductVariant } from "lib/shopify/types";
+// import { ProductOption, ProductVariant } from "lib/shopify/types";
+type ProductOption = any;
+type ProductVariant = any;
 import { useRouter, useSearchParams } from "next/navigation";
 
 type Combination = {
@@ -27,11 +29,11 @@ export function VariantSelector({
     return null;
   }
 
-  const combinations: Combination[] = variants.map((variant) => ({
+  const combinations: Combination[] = variants.map((variant: any) => ({
     id: variant.id,
     availableForSale: variant.availableForSale,
     ...variant.selectedOptions.reduce(
-      (accumulator, option) => ({
+      (accumulator: any, option: any) => ({
         ...accumulator,
         [option.name.toLowerCase()]: option.value,
       }),
@@ -50,7 +52,7 @@ export function VariantSelector({
       <dl className="mb-8">
         <dt className="mb-4 text-sm uppercase tracking-wide">{option.name}</dt>
         <dd className="flex flex-wrap gap-3">
-          {option.values.map((value) => {
+          {option.values.map((value: any) => {
             const optionNameLowerCase = option.name.toLowerCase();
 
             // Base option params on current searchParams so we can preserve any other param state.

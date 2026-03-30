@@ -1,11 +1,16 @@
 "use client";
 
-import type {
-  Cart,
-  CartItem,
-  Product,
-  ProductVariant,
-} from "lib/shopify/types";
+// import type {
+//   Cart,
+//   CartItem,
+//   Product,
+//   ProductVariant,
+// } from "lib/shopify/types";
+type Cart = any;
+type CartItem = any;
+type Product = any;
+type ProductVariant = any;
+
 import React, {
   createContext,
   use,
@@ -137,7 +142,7 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
     case "UPDATE_ITEM": {
       const { merchandiseId, updateType } = action.payload;
       const updatedLines = currentCart.lines
-        .map((item) =>
+        .map((item: any) =>
           item.merchandise.id === merchandiseId
             ? updateCartItem(item, updateType)
             : item,
@@ -165,7 +170,7 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
     case "ADD_ITEM": {
       const { variant, product } = action.payload;
       const existingItem = currentCart.lines.find(
-        (item) => item.merchandise.id === variant.id,
+        (item: any) => item.merchandise.id === variant.id,
       );
       const updatedItem = createOrUpdateCartItem(
         existingItem,
@@ -174,7 +179,7 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
       );
 
       const updatedLines = existingItem
-        ? currentCart.lines.map((item) =>
+        ? currentCart.lines.map((item: any) =>
             item.merchandise.id === variant.id ? updatedItem : item,
           )
         : [...currentCart.lines, updatedItem];

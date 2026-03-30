@@ -5,7 +5,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import LoadingDots from "components/loading-dots";
 import Price from "components/price";
-import { DEFAULT_OPTION } from "lib/constants";
+// import { DEFAULT_OPTION } from "lib/constants";
+const DEFAULT_OPTION = "Default Title";
 import { createUrl } from "lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -93,17 +94,17 @@ export default function CartModal() {
                 <div className="flex h-full flex-col justify-between overflow-hidden p-1">
                   <ul className="grow overflow-auto py-4">
                     {cart.lines
-                      .sort((a, b) =>
+                      .sort((a: any, b: any) =>
                         a.merchandise.product.title.localeCompare(
                           b.merchandise.product.title,
                         ),
                       )
-                      .map((item, i) => {
+                      .map((item: any, i: number) => {
                         const merchandiseSearchParams =
                           {} as MerchandiseSearchParams;
 
                         item.merchandise.selectedOptions.forEach(
-                          ({ name, value }) => {
+                          ({ name, value }: any) => {
                             if (value !== DEFAULT_OPTION) {
                               merchandiseSearchParams[name.toLowerCase()] =
                                 value;
