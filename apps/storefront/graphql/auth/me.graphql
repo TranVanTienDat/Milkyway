@@ -1,0 +1,10 @@
+query Me {
+  me {
+    username
+    id
+    email
+    documentId
+    confirmed
+    blocked
+  }
+}

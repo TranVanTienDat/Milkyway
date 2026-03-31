@@ -1,0 +1,72 @@
+# 🌐 Tổng hợp Schema Client & Mock Remote
+type Query {
+  # Local
+  currentUser: UserCache
+  authTokens: [TokenCache]
+  # Remote Mock (Strapi)
+  me: UsersPermissionsMe
+}
+
+type Mutation {
+  # Local
+  setAuth(user: UserInput, tokens: [TokenInput]): Boolean
+  clearAuth: Boolean
+  # Remote Mock (Strapi)
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+}
+
+# --- Types định nghĩa cho Local ---
+type UserCache {
+  id: ID
+  username: String
+  email: String
+  documentId: String
+  confirmed: Boolean
+  blocked: Boolean
+}
+
+type TokenCache {
+  beType: String
+  token: String
+}
+
+input UserInput {
+  id: ID
+  username: String
+  email: String
+  documentId: String
+  confirmed: Boolean
+  blocked: Boolean
+}
+
+input TokenInput {
+  beType: String
+  token: String
+}
+
+# --- Types định nghĩa cho Remote (Strapi) ---
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String
+  documentId: ID!
+  confirmed: Boolean
+  blocked: Boolean
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
