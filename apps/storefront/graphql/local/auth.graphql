@@ -1,0 +1,27 @@
+# 🔍 Truy vấn thông tin người dùng từ Cache Local
+query GetAuthData {
+  currentUser @client {
+    id
+    username
+    email
+    documentId
+    confirmed
+    blocked
+    __typename
+  }
+  authTokens @client {
+    beType
+    token
+    __typename
+  }
+}
+
+# 📥 Cập nhật thông tin người dùng vào Cache Local
+mutation SetAuth($user: UserInput, $tokens: [TokenInput]) {
+  setAuth(user: $user, tokens: $tokens) @client
+}
+
+# 🧹 Xoá thông tin người dùng (Logout)
+mutation ClearAuth {
+  clearAuth @client
+}

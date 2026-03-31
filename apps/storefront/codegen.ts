@@ -7,8 +7,7 @@ dotenv.config({ path: resolve(__dirname, '.env') });
 
 const config: CodegenConfig = {
   overwrite: true,
-  // Sử dụng biến môi trường đã được nạp
-  schema: process.env.NEXT_PUBLIC_CMS_GRAPHQL_URL || 'http://localhost:1337/graphql',
+  schema: 'graphql/local/schema.graphql',
   documents: ['graphql/**/*.graphql'],
   generates: {
     'gql/': {

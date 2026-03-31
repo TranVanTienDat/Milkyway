@@ -1,27 +1,44 @@
 "use client";
 
+import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@apollo/client";
+import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RegisterDocument } from "@/gql/graphql";
-import { useMutation } from "@apollo/client";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { toast } from "sonner";
+import { registerSchema, type RegisterInput } from "@/lib/validations/auth";
+import { cn } from "@/lib/utils";
 
+/**
+ * Form Đăng ký
+ * @description Đã refactor sử dụng react-hook-form & zod.
+ */
 export default function RegisterForm() {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    fullname: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    terms: false,
-  });
-  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const [register, { loading }] = useMutation(RegisterDocument, {
+  // Khởi tạo React Hook Form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterInput>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      fullname: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      terms: false,
+    },
+  });
+
+  // Mutation đăng ký
+  const [registerAccount, { loading }] = useMutation(RegisterDocument, {
     onCompleted: (data) => {
       if (data?.register) {
         const { jwt } = data.register;
@@ -37,148 +54,118 @@ export default function RegisterForm() {
     },
   });
 
-  const validate = () => {
-    const newErrors: Record<string, string> = {};
-    if (!formData.fullname || formData.fullname.length < 3) {
-      newErrors.fullname = "Họ và tên phải có ít nhất 3 ký tự";
-    }
-    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email không hợp lệ";
-    }
-    if (!formData.password || formData.password.length < 8) {
-      newErrors.password = "Mật khẩu phải có ít nhất 8 ký tự";
-    }
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Xác nhận mật khẩu không trùng khớp";
-    }
-    if (!formData.terms) {
-      newErrors.terms = "Bạn cần đồng ý với điều khoản dịch vụ";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    await register({
+  // Xử lý submit
+  const onSubmit = async (data: RegisterInput) => {
+    await registerAccount({
       variables: {
-        username: formData.fullname,
-        email: formData.email,
-        password: formData.password,
+        username: data.fullname,
+        email: data.email,
+        password: data.password,
       },
     });
   };
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit}>
+    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+      {/* Fullname Field */}
       <div className="space-y-2">
         <Label
           htmlFor="fullname"
-          className={errors.fullname ? "text-error" : ""}
+          className={cn(errors.fullname && "text-error")}
         >
           Họ và Tên
         </Label>
         <Input
           id="fullname"
           placeholder="Lão đại Glow & Pure"
-          value={formData.fullname}
-          onChange={(e) =>
-            setFormData({ ...formData, fullname: e.target.value })
-          }
-          className={
-            errors.fullname ? "border-error focus-visible:ring-error" : ""
-          }
+          {...register("fullname")}
+          className={cn(
+            errors.fullname && "border-error focus-visible:ring-error",
+          )}
         />
         {errors.fullname && (
           <p className="text-[10px] text-error font-medium">
-            {errors.fullname}
+            {errors.fullname.message}
           </p>
         )}
       </div>
 
+      {/* Email Field */}
       <div className="space-y-2">
-        <Label htmlFor="email" className={errors.email ? "text-error" : ""}>
+        <Label htmlFor="email" className={cn(errors.email && "text-error")}>
           Email
         </Label>
         <Input
           id="email"
           placeholder="example@glowpure.com"
           type="email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className={
-            errors.email ? "border-error focus-visible:ring-error" : ""
-          }
+          {...register("email")}
+          className={cn(
+            errors.email && "border-error focus-visible:ring-error",
+          )}
         />
         {errors.email && (
-          <p className="text-[10px] text-error font-medium">{errors.email}</p>
+          <p className="text-[10px] text-error font-medium">
+            {errors.email.message}
+          </p>
         )}
       </div>
 
+      {/* Passwords Grid */}
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label
             htmlFor="password"
-            className={errors.password ? "text-error" : ""}
+            className={cn(errors.password && "text-error")}
           >
             Mật khẩu
           </Label>
           <Input
             id="password"
             type="password"
-            value={formData.password}
-            onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
-            }
-            className={
-              errors.password ? "border-error focus-visible:ring-error" : ""
-            }
+            {...register("password")}
+            className={cn(
+              errors.password && "border-error focus-visible:ring-error",
+            )}
           />
         </div>
         <div className="space-y-2">
           <Label
             htmlFor="confirm-password"
-            className={errors.confirmPassword ? "text-error" : ""}
+            className={cn(errors.confirmPassword && "text-error")}
           >
             Xác nhận
           </Label>
           <Input
             id="confirm-password"
             type="password"
-            value={formData.confirmPassword}
-            onChange={(e) =>
-              setFormData({ ...formData, confirmPassword: e.target.value })
-            }
-            className={
-              errors.confirmPassword
-                ? "border-error focus-visible:ring-error"
-                : ""
-            }
+            {...register("confirmPassword")}
+            className={cn(
+              errors.confirmPassword && "border-error focus-visible:ring-error",
+            )}
           />
         </div>
       </div>
       {(errors.password || errors.confirmPassword) && (
         <p className="text-[10px] text-error font-medium">
-          {errors.password || errors.confirmPassword}
+          {errors.password?.message || errors.confirmPassword?.message}
         </p>
       )}
 
+      {/* Terms Checkbox */}
       <div className="flex items-start space-x-2">
         <input
           type="checkbox"
           id="terms"
+          {...register("terms")}
           className="mt-1 w-4 h-4 rounded-sm border-none bg-surface-container-low accent-primary appearance-none checked:bg-primary transition-all cursor-pointer relative after:absolute after:hidden checked:after:block after:content-['✓'] after:text-[10px] after:text-white after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2"
-          checked={formData.terms}
-          onChange={(e) =>
-            setFormData({ ...formData, terms: e.target.checked })
-          }
         />
         <Label
           htmlFor="terms"
-          className={`capitalize tracking-normal font-normal leading-tight h-auto ${errors.terms ? "text-error" : "text-on-surface/50"}`}
+          className={cn(
+            "capitalize tracking-normal font-normal leading-tight h-auto",
+            errors.terms ? "text-error" : "text-on-surface/50",
+          )}
         >
           Tôi đồng ý với{" "}
           <Link href="/terms" className="font-bold underline">
@@ -190,7 +177,13 @@ export default function RegisterForm() {
           </Link>
         </Label>
       </div>
+      {errors.terms && (
+        <p className="text-[10px] text-error font-medium">
+          {errors.terms.message}
+        </p>
+      )}
 
+      {/* Submit Button */}
       <Button
         type="submit"
         className="w-full h-12 text-base font-semibold uppercase tracking-widest shadow-lg shadow-primary/20 bg-primary/95 hover:bg-primary transition-all"
